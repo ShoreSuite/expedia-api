@@ -12,6 +12,8 @@ module Expedia
         unless args.empty?
           f = args.first
           if f.is_a?(Array) && f.all? { |a| a.is_a?(Symbol) }
+            # Use Ruby underscore variable name convention
+            f.map! { |attr| attr.to_s.underscore }
             @attributes += f
             f.each do |attr|
               attr_accessor attr
@@ -29,9 +31,11 @@ module Expedia
     def to_s
       data = self.class.attributes.map do |attr|
         v = send(attr)
-        "#{attr}: #{v}"
-      end.join(' ')
-      "<#{self.class}@0x#{format('%014x', object_id << 1)} #{data}>"
+        next unless v
+        vv = v.is_a?(String) ? v.inspect : v.to_s
+        "#{attr}: #{vv}"
+      end.compact.join(' ')
+      "<#{self.class}:0x#{format('%014x', object_id << 1)} #{data}>"
     end
   end
 
@@ -53,7 +57,7 @@ module Expedia
       include Representable::Hash::AllowSymbols
 
       Property.attribute_names.each do |attr|
-        property attr
+        property attr, as: attr.camelize(:lower)
       end
     end
   end
