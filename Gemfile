@@ -33,7 +33,6 @@ group :development do
   gem 'jsonpath', '~> 0.5.8', require: false
 
   # WebMock and VCR to record HTTP interactions with other services
-  gem 'httpclient', '~> 2.8.0', require: false
   gem 'vcr', '~> 3.0.3', require: false
-  gem 'webmock', '~> 2.0.3', require: false
+  gem 'webmock', '~> 3.0.1', require: false
 end

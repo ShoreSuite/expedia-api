@@ -19,8 +19,18 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'dotenv/load'
+
 require 'simplecov'
 SimpleCov.start
+
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'vcr/rspec'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
