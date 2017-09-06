@@ -22,7 +22,7 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(property.address.country_code).to eq('USA')
       expect(property.distribution_models).to be_a Array
       expect(property.distribution_models.count).to eq(2)
-      p property.reservation_cut_off
+      expect(property.reservation_cut_off.time).to eq('23:59')
     end
   end
 end
