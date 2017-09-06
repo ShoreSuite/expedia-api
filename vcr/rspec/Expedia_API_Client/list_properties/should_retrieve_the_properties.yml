@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Sep 2017 04:42:29 GMT
+      - Wed, 06 Sep 2017 06:55:23 GMT
       Content-Type:
       - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
       Content-Length:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - keep-alive
       Transaction-Id:
-      - c5af619f-feca-4866-9f09-1b88d86f6290
+      - 53c0eb63-db67-4468-8aaa-3f82477a32a9
       Vary:
       - Accept-Encoding, User-Agent
       X-Application-Context:
@@ -39,5 +39,5 @@ http_interactions:
       string: !binary |-
         eyJlbnRpdHkiOlt7InJlc291cmNlSWQiOjE2NjM2ODQzLCJuYW1lIjoiRVFDIEhvdGVsIDMyMSIsInBhcnRuZXJDb2RlIjoiMTY2MzY4NDMiLCJzdGF0dXMiOiJBY3RpdmUiLCJjdXJyZW5jeSI6IlVTRCIsImFkZHJlc3MiOnsibGluZTEiOiIxMjM0IFRlc3QgU3RyZWV0IiwibGluZTIiOiIiLCJjaXR5IjoiUsOpZ2lvbiBUZXN0Iiwic3RhdGUiOiIiLCJwb3N0YWxDb2RlIjoiIiwiY291bnRyeUNvZGUiOiJVU0EifSwiZGlzdHJpYnV0aW9uTW9kZWxzIjpbIkV4cGVkaWFDb2xsZWN0IiwiSG90ZWxDb2xsZWN0Il0sInJhdGVBY3F1aXNpdGlvblR5cGUiOiJTZWxsTEFSIiwidGF4SW5jbHVzaXZlIjpmYWxzZSwicHJpY2luZ01vZGVsIjoiUGVyRGF5UHJpY2luZyIsImJhc2VBbGxvY2F0aW9uRW5hYmxlZCI6ZmFsc2UsIm1pbkxPU1RocmVzaG9sZCI6MSwiY2FuY2VsbGF0aW9uVGltZSI6IjE4OjAwIiwidGltZXpvbmUiOiIoR01UKSBHcmVlbndpY2ggTWVhbiBUaW1lIDogRHVibGluLCBFZGluYnVyZ2gsIExpc2JvbiwgTG9uZG9uIiwicmVzZXJ2YXRpb25DdXRPZmYiOnsidGltZSI6IjIzOjU5IiwiZGF5Ijoic2FtZURheSJ9fV19
     http_version: 
-  recorded_at: Wed, 06 Sep 2017 04:42:29 GMT
+  recorded_at: Wed, 06 Sep 2017 06:55:23 GMT
 recorded_with: VCR 3.0.3

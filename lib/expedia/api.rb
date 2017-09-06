@@ -4,7 +4,6 @@
 module Expedia
   # Expedia::API
   module API
-
   end
 end
 
