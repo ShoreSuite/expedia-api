@@ -19,12 +19,18 @@ module Expedia
     class Client
       def list_properties
         conn = make_conn
-
         resp = conn.get '/products/properties'
         json = JSON.parse(resp.body).with_indifferent_access
         json[:entity].map do |entity|
           Property::PropertyRepresenter.new(Property.new).from_hash(entity)
         end
+      end
+
+      def fetch_property(resource_id)
+        conn = make_conn
+        resp = conn.get "/products/properties/#{resource_id}"
+        json = JSON.parse(resp.body).with_indifferent_access
+        Property::PropertyRepresenter.new(Property.new).from_hash(json[:entity])
       end
 
       private
