@@ -17,6 +17,12 @@ RSpec.describe Expedia::API::Client, :vcr do
       # rubocop:enable Style/NumericLiterals
       expect(property.name).to eq('EQC Hotel 321')
       expect(property.partner_code).to eq('16636843')
+      expect(property.address.line1).to eq('1234 Test Street')
+      expect(property.address.city).to eq('Région Test')
+      expect(property.address.country_code).to eq('USA')
+      expect(property.distribution_models).to be_a Array
+      expect(property.distribution_models.count).to eq(2)
+      p property.reservation_cut_off
     end
   end
 end

@@ -8,10 +8,12 @@ module Expedia
   class Resource
     class << self
       def attributes(*args)
+        @raw_attribute_names ||= []
         @attributes ||= []
         unless args.empty?
           f = args.first
           if f.is_a?(Array) && f.all? { |a| a.is_a?(Symbol) }
+            @raw_attribute_names += f
             # Use Ruby underscore variable name convention
             f.map! { |attr| attr.to_s.underscore }
             @attributes += f
@@ -23,8 +25,12 @@ module Expedia
         @attributes
       end
 
+      def raw_attribute_names
+        @raw_attribute_names.map(&:to_s)
+      end
+
       def attribute_names
-        attributes.map(&:to_s)
+        @attributes.map(&:to_s)
       end
     end
 
@@ -56,8 +62,20 @@ module Expedia
       include Representable::Hash
       include Representable::Hash::AllowSymbols
 
-      Property.attribute_names.each do |attr|
-        property attr, as: attr.camelize(:lower)
+      Property.raw_attribute_names.each do |attr|
+        next if %w[address reservationCutOff].include?(attr)
+        property attr.underscore, as: attr
+      end
+
+      property :address, class: Address do
+        Address.raw_attribute_names.each do |attr|
+          property attr.underscore, as: attr
+        end
+      end
+
+      property :reservation_cut_off, as: 'reservationCutOff', class: OpenStruct do
+        property :time
+        property :day
       end
     end
   end
