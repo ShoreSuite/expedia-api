@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/hash'
 require 'faraday'
+require 'json'
 
 # The Expedia 'namespace'
 module Expedia
@@ -22,7 +24,9 @@ module Expedia
           faraday.basic_auth(EQC_USERNAME, EQC_PASSWORD)
         end
 
-        conn.get '/products/properties'
+        resp = conn.get '/products/properties'
+        json = JSON.parse(resp.body).with_indifferent_access
+        json[:entity]
       end
 
     end
