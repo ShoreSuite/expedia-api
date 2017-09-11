@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.expediapartnercentral.com/products/properties/16636843/roomTypes/201788359
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic RVFDMTY2MzY4NDNob3RlbDpCdG02bm9FISZaQz1US2FV
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 11 Sep 2017 02:05:47 GMT
+      Content-Type:
+      - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
+      Content-Length:
+      - '485'
+      Connection:
+      - keep-alive
+      Transaction-Id:
+      - e1c3de4f-cba2-4f95-ae9e-f973544693b2
+      Vary:
+      - Accept-Encoding, User-Agent
+      X-Application-Context:
+      - EPS-Product:prod:8443
+    body:
+      encoding: UTF-8
+      string: '{"entity":{"resourceId":201788359,"partnerCode":"RoomCode","name":{"value":"Standard
+        Room"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"Infant","minAge":0}],"maxOccupancy":{"total":4,"adults":4,"children":1},"standardBedding":[{"option":[{"quantity":1,"type":"Twin
+        Bed","size":"Twin"}]}],"smokingPreferences":["Smoking","Non-Smoking"],"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636843/roomTypes/201788359"}}}}'
+    http_version: 
+  recorded_at: Mon, 11 Sep 2017 02:05:47 GMT
+recorded_with: VCR 3.0.3
