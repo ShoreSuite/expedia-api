@@ -24,7 +24,7 @@ module Expedia
         resp = conn.get '/products/properties'
         json = JSON.parse(resp.body).with_indifferent_access
         json[:entity].map do |entity|
-          Property::PropertyRepresenter.new(Property.new).from_hash(entity)
+          Property.from_hash(entity)
         end
       end
 
@@ -32,7 +32,7 @@ module Expedia
         conn = make_conn
         resp = conn.get "/products/properties/#{resource_id}"
         json = JSON.parse(resp.body).with_indifferent_access
-        Property::PropertyRepresenter.new(Property.new).from_hash(json[:entity])
+        Property.from_hash(json[:entity])
       end
 
       def list_room_types(property_id)
@@ -40,7 +40,7 @@ module Expedia
         resp = conn.get "/products/properties/#{property_id}/roomTypes"
         json = JSON.parse(resp.body).with_indifferent_access
         json[:entity].map do |entity|
-          RoomType::RoomTypeRepresenter.new(RoomType.new).from_hash(entity)
+          RoomType.from_hash(entity)
         end
       end
 
@@ -48,14 +48,14 @@ module Expedia
         conn = make_conn
         resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}"
         json = JSON.parse(resp.body).with_indifferent_access
-        RoomType::RoomTypeRepresenter.new(RoomType.new).from_hash(json[:entity])
+        RoomType.from_hash(json[:entity])
       end
 
       def fetch_rate_threshold(property_id, room_type_id)
         conn = make_conn
         resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/rateThresholds"
         json = JSON.parse(resp.body).with_indifferent_access
-        RateThreshold::RateThresholdRepresenter.new(RateThreshold.new).from_hash(json[:entity])
+        RateThreshold.from_hash(json[:entity])
       end
 
       private

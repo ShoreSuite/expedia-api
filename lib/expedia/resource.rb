@@ -48,6 +48,14 @@ module Expedia
       end
     end
 
+    class << self
+      def from_hash(hash)
+        resource_class = self
+        representer_class = resource_class.const_get('Representer')
+        representer_class.new(resource_class.new).from_hash(hash)
+      end
+    end
+
     def to_s
       data = self.class.attributes.map do |attr|
         v = send(attr)

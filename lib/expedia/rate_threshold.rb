@@ -9,7 +9,7 @@ module Expedia
     attributes %i[type minAmount maxAmount source]
 
     # For JSON & XML representation
-    class RateThresholdRepresenter < Representable::Decorator
+    class Representer < Representable::Decorator
       include Representable::JSON
       include Representable::Hash
       include Representable::Hash::AllowSymbols

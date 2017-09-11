@@ -10,7 +10,7 @@ module Expedia
                   standardBedding smokingPreferences]
 
     # For JSON & XML representation
-    class RoomTypeRepresenter < Representable::Decorator
+    class Representer < Representable::Decorator
       include Representable::JSON
       include Representable::Hash
       include Representable::Hash::AllowSymbols

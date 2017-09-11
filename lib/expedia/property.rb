@@ -16,7 +16,7 @@ module Expedia
     end
 
     # For JSON & XML representation
-    class PropertyRepresenter < Representable::Decorator
+    class Representer < Representable::Decorator
       include Representable::JSON
       include Representable::Hash
       include Representable::Hash::AllowSymbols
