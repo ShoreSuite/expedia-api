@@ -33,6 +33,15 @@ module Expedia
         Property::PropertyRepresenter.new(Property.new).from_hash(json[:entity])
       end
 
+      def list_room_types(property_id)
+        conn = make_conn
+        resp = conn.get "/products/properties/#{property_id}/roomTypes"
+        json = JSON.parse(resp.body).with_indifferent_access
+        json[:entity].map do |entity|
+          RoomType::RoomTypeRepresenter.new(RoomType.new).from_hash(entity)
+        end
+      end
+
       def fetch_room_type(property_id, resource_id)
         conn = make_conn
         resp = conn.get "/products/properties/#{property_id}/roomTypes/#{resource_id}"

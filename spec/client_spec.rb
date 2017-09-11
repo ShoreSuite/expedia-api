@@ -46,6 +46,36 @@ RSpec.describe Expedia::API::Client, :vcr do
     end
   end
 
+  describe 'list_room_types' do
+    it 'should retrieve the room types for the given property_id' do
+      client = Expedia::API::Client.new
+      # rubocop:disable Style/NumericLiterals
+      room_types = client.list_room_types(16636843)
+      expect(room_types).to be_a Array
+      expect(room_types.count).to eq(1)
+      room_type = room_types.first
+      expect(room_type).to be_a Expedia::RoomType
+      expect(room_type.resource_id).to eq(201788359)
+      # rubocop:enable Style/NumericLiterals
+      expect(room_type.partner_code).to eq('RoomCode')
+      expect(room_type.name.value).to eq('Standard Room')
+      expect(room_type.status).to eq('Active')
+      expect(room_type.age_categories).to be_a(Array)
+      expect(room_type.age_categories.count).to eq(2)
+      expect(room_type.max_occupancy.total).to eq(4)
+      expect(room_type.max_occupancy.adults).to eq(4)
+      expect(room_type.max_occupancy.children).to eq(1)
+      expect(room_type.standard_bedding).to be_a(Array)
+      expect(room_type.standard_bedding.count).to eq(1)
+      expect(room_type.standard_bedding.first.option).to be_a(Array)
+      expect(room_type.standard_bedding.first.option.count).to eq(1)
+      expect(room_type.standard_bedding.first.option.first.quantity).to eq(1)
+      expect(room_type.standard_bedding.first.option.first.type).to eq('Twin Bed')
+      expect(room_type.standard_bedding.first.option.first.size).to eq('Twin')
+      expect(room_type.smoking_preferences).to eq(%w[Smoking Non-Smoking])
+    end
+  end
+
   describe 'fetch_room_type' do
     it 'should retrieve the room type with the given id' do
       client = Expedia::API::Client.new
