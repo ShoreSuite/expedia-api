@@ -2,6 +2,7 @@
 
 require 'expedia/api/client'
 require 'expedia/property'
+require 'expedia/rate_threshold'
 require 'expedia/room_type'
 
 RSpec.describe Expedia::API::Client, :vcr do
@@ -100,6 +101,20 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(room_type.standard_bedding.first.option.first.type).to eq('Twin Bed')
       expect(room_type.standard_bedding.first.option.first.size).to eq('Twin')
       expect(room_type.smoking_preferences).to eq(%w[Smoking Non-Smoking])
+    end
+  end
+
+  describe 'fetch_rate_threshold' do
+    it 'should fetch the room rate threshold' do
+      client = Expedia::API::Client.new
+      # rubocop:disable Style/NumericLiterals
+      rate_threshold = client.fetch_rate_threshold(16636843, 201788359)
+      # rubocop:enable Style/NumericLiterals
+      expect(rate_threshold).to be_a Expedia::RateThreshold
+      expect(rate_threshold.type).to eq('SellLAR')
+      expect(rate_threshold.min_amount).to eq(10.8184)
+      expect(rate_threshold.max_amount).to eq(540.9212)
+      expect(rate_threshold.source).to eq('RecentBookings')
     end
   end
 end

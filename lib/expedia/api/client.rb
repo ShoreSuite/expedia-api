@@ -5,6 +5,8 @@ require 'faraday'
 require 'json'
 
 require 'expedia/property'
+require 'expedia/room_type'
+require 'expedia/rate_threshold'
 
 ENV_VARS = %w[EQC_PROPERTY_ID EQC_USERNAME EQC_PASSWORD].freeze
 
@@ -42,11 +44,18 @@ module Expedia
         end
       end
 
-      def fetch_room_type(property_id, resource_id)
+      def fetch_room_type(property_id, room_type_id)
         conn = make_conn
-        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{resource_id}"
+        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}"
         json = JSON.parse(resp.body).with_indifferent_access
         RoomType::RoomTypeRepresenter.new(RoomType.new).from_hash(json[:entity])
+      end
+
+      def fetch_rate_threshold(property_id, room_type_id)
+        conn = make_conn
+        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/rateThresholds"
+        json = JSON.parse(resp.body).with_indifferent_access
+        RateThreshold::RateThresholdRepresenter.new(RateThreshold.new).from_hash(json[:entity])
       end
 
       private

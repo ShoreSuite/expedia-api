@@ -47,5 +47,3 @@ module Expedia
     end
   end
 end
-
-require 'expedia/api'

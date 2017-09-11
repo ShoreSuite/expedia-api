@@ -6,30 +6,45 @@ module Expedia
   # Base class for all mappable resources
   class Resource
     class << self
+      # Use
+      #
+      # ```
+      #     attributes :foo, :bar
+      # ```
+      #
+      # It will automatically create accessors using Ruby naming conventions, but
+      # keep the original attribute names in `class.raw_attribute_names`
       def attributes(*args)
-        @raw_attribute_names ||= []
-        @attributes ||= []
         unless args.empty?
           f = args.first
           if f.is_a?(Array) && f.all? { |a| a.is_a?(Symbol) }
-            @raw_attribute_names += f
-            # Use Ruby underscore variable name convention
-            f.map! { |attr| attr.to_s.underscore }
-            @attributes += f
-            f.each do |attr|
-              attr_accessor attr
-            end
+            f.each { |attr| property attr }
           end
         end
-        @attributes
+        properties.keys
+      end
+
+      # Define a property using 'rawName'
+      def property(raw_name, options = {})
+        as = options.delete(:as) || raw_name.to_s.underscore
+        properties[raw_name] = {
+          name: raw_name,
+          as: as,
+          options: options
+        }
+        attr_accessor as
+      end
+
+      def properties
+        @properties ||= {}
       end
 
       def raw_attribute_names
-        @raw_attribute_names.map(&:to_s)
+        properties.keys.map(&:to_s)
       end
 
       def attribute_names
-        @attributes.map(&:to_s)
+        properties.map(&:as)
       end
     end
 
