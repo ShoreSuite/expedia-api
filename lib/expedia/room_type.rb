@@ -42,6 +42,8 @@ module Expedia
           property :size
         end
       end
+
+      collection :smoking_preferences, as: 'smokingPreferences'
     end
   end
 end

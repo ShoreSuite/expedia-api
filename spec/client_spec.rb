@@ -69,6 +69,7 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(room_type.standard_bedding.first.option.first.quantity).to eq(1)
       expect(room_type.standard_bedding.first.option.first.type).to eq('Twin Bed')
       expect(room_type.standard_bedding.first.option.first.size).to eq('Twin')
+      expect(room_type.smoking_preferences).to eq(%w[Smoking Non-Smoking])
     end
   end
 end
