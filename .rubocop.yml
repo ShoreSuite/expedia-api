@@ -11,5 +11,4 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 20
 Lint/ScriptPermission:
-  Excludes:
-    - test.rb
+  Enabled: false
