@@ -36,16 +36,18 @@ module Expedia
         add_declaration(name, options, :property, block)
       end
 
-      # Define a collection using 'rawName', defaults to `OpenStruct`
+      # Define a collection using 'attr_name', defaults class to `OpenStruct`
       def collection(name, options = {}, &block)
         add_declaration(name, options, :collection, block)
       end
 
-      def add_declaration(name, options, method, block)
-        decl = Declaration.new(name, options, method)
-        decl.instance_eval(&block) if block
-        declarations[name] = decl
-        attr_accessor name
+      def from_hash(hash)
+        representer_class = if constants.include?(:Representer)
+                              const_get(:Representer)
+                            else
+                              send(:dynamically_create_representer)
+                            end
+        representer_class.new(new).from_hash(hash)
       end
 
       def declarations
@@ -54,7 +56,14 @@ module Expedia
 
       private
 
-      # The ff. methods are private, to avoid explicit calling. This is why we have to
+      def add_declaration(name, options, method, block)
+        decl = Declaration.new(name, options, method)
+        decl.instance_eval(&block) if block
+        declarations[name] = decl
+        attr_accessor name
+      end
+
+      # The ff. methods are private to avoid explicit calling. This is why we have to
       # send(:method_name) throughout
 
       def dynamically_create_representer
@@ -74,17 +83,6 @@ module Expedia
         resource.declarations.each do |_name, decl|
           decl.declare_mappings(resource, representer)
         end
-      end
-    end
-
-    class << self
-      def from_hash(hash)
-        representer_class = if constants.include?(:Representer)
-                              const_get(:Representer)
-                            else
-                              send(:dynamically_create_representer)
-                            end
-        representer_class.new(new).from_hash(hash)
       end
     end
 
