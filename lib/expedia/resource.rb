@@ -51,7 +51,20 @@ module Expedia
     class << self
       def from_hash(hash)
         resource_class = self
-        representer_class = resource_class.const_get('Representer')
+        if resource_class.constants.include?(:Representer)
+          representer_class = resource_class.const_get(:Representer)
+        else
+          # Dynamic metaprogramming magic follows
+          representer_class = Class.new(Representable::Decorator) do
+            include Representable::JSON
+            include Representable::Hash
+            include Representable::Hash::AllowSymbols
+            resource_class.raw_attribute_names.each do |attr|
+              property attr.underscore, as: attr
+            end
+          end
+          resource_class.const_set(:Representer, representer_class)
+        end
         representer_class.new(resource_class.new).from_hash(hash)
       end
     end
