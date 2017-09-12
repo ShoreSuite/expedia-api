@@ -21,11 +21,13 @@ module Expedia
       # ```
       def attributes(*args)
         unless args.empty?
-          f = args.first
-          f.each { |attr| property attr.to_sym } if f.is_a?(Array)
+          props = args.first.is_a?(Array) ? args.first : args
+          props.each { |attr| property attr.to_sym }
         end
         declarations.keys
       end
+
+      alias properties attributes
 
       # Define a property using 'attr_name', equivalent to
       #
@@ -41,13 +43,20 @@ module Expedia
         add_declaration(name, options, :collection, block)
       end
 
+      def representer_class
+        @representer_class ||= if constants.include?(:Representer)
+                                 const_get(:Representer)
+                               else
+                                 send(:dynamically_create_representer)
+                               end
+      end
+
       def from_hash(hash)
-        representer_class = if constants.include?(:Representer)
-                              const_get(:Representer)
-                            else
-                              send(:dynamically_create_representer)
-                            end
         representer_class.new(new).from_hash(hash)
+      end
+
+      def as_json(*args)
+        representer_class.new(self).as_json(*args)
       end
 
       def declarations
@@ -86,9 +95,23 @@ module Expedia
       end
     end
 
+    def initialize(params = {})
+      params.each do |attr, value|
+        send("#{attr}=", value)
+      end
+    end
+
+    def representer_class
+      @representer_class ||= self.class.representer_class
+    end
+
+    def to_json
+      representer_class.new(self).to_json
+    end
+
     def to_s
-      data = self.class.properties.values.map do |prop|
-        attr = prop.name
+      data = self.class.declarations.values.map do |decl|
+        attr = decl.name
         v = send(attr)
         next unless v
         vv = v.is_a?(String) ? v.inspect : v.to_s
@@ -108,6 +131,16 @@ module Expedia
         @options[:as] = name.to_s.camelcase(:lower) unless @options.key?(:as)
         @poc_declarations = {}
       end
+
+      def attributes(*args)
+        unless args.empty?
+          f = args.first
+          f.each { |attr| property attr.to_sym } if f.is_a?(Array)
+        end
+        @poc_declarations.keys
+      end
+
+      alias properties attributes
 
       def property(name, options = {}, &block)
         prop = Declaration.new(name, options, :property)

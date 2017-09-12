@@ -6,11 +6,13 @@ require 'expedia/resource'
 module Expedia
   # A Product
   class RoomType < Resource
-    attributes %w[resourceId partnerCode status].map(&:underscore)
+    attributes :resource_id, :partner_code
 
     property :name do
       property :value
     end
+
+    property :status
 
     collection :age_categories do
       property :category

@@ -3,6 +3,7 @@
 require 'expedia/api/client'
 require 'expedia/property'
 require 'expedia/rate_threshold'
+require 'expedia/rate_plan'
 require 'expedia/room_type'
 
 RSpec.describe Expedia::API::Client, :vcr do
@@ -129,6 +130,25 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(rate_threshold.min_amount).to eq(10.8184)
       expect(rate_threshold.max_amount).to eq(540.9212)
       expect(rate_threshold.source).to eq('RecentBookings')
+    end
+  end
+
+  describe 'fetch_rate_plan' do
+    it 'should retrieve the rate plan with the given id' do
+      client = Expedia::API::Client.new
+      # rubocop:disable Style/NumericLiterals
+      room_type = client.fetch_rate_plan(16636843, 201788359, 209102875)
+      expect(room_type).to be_a Expedia::RatePlan
+      expect(room_type.resource_id).to eq(209102875)
+      # rubocop:enable Style/NumericLiterals
+      expect(room_type.distribution_rules).to be_a Array
+      expect(room_type.distribution_rules.count).to eq(2)
+      expect(room_type.distribution_rules.first.expedia_id).to eq('209102875')
+      expect(room_type.distribution_rules.first.partner_code).to eq('RoomOnly')
+      expect(room_type.distribution_rules.first.distribution_model).to eq('ExpediaCollect')
+      expect(room_type.distribution_rules.first.manageable).to be false
+      expect(room_type.distribution_rules.first.compensation.percent).to eq(0.2)
+      expect(room_type.distribution_rules.first.compensation.min_amount).to eq(0)
     end
   end
 end
