@@ -8,7 +8,7 @@ module Expedia
   class Property < Resource
     attributes %i[resourceId name partnerCode status currency distributionModels
                   rateAcquisitionType taxInclusive pricingModel baseAllocationEnabled
-                  minLOSThreshold cancellationTime timezone reservationCutOff]
+                  minLOSThreshold cancellationTime timezone]
 
     # An Address
     class Address < Resource
@@ -16,28 +16,9 @@ module Expedia
     end
 
     property :address, class: Address
-
-    # For JSON & XML representation
-    class Representer < Representable::Decorator
-      include Representable::JSON
-      include Representable::Hash
-      include Representable::Hash::AllowSymbols
-
-      Property.raw_attribute_names.each do |attr|
-        next if %w[address reservationCutOff].include?(attr)
-        property attr.underscore, as: attr
-      end
-
-      property :address, class: Address do
-        Address.raw_attribute_names.each do |attr|
-          property attr.underscore, as: attr
-        end
-      end
-
-      property :reservation_cut_off, as: 'reservationCutOff', class: OpenStruct do
-        property :time
-        property :day
-      end
+    property :reservationCutOff, class: OpenStruct do
+      property :time
+      property :day
     end
   end
 end

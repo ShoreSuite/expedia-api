@@ -24,13 +24,20 @@ module Expedia
         properties.keys
       end
 
-      # Define a property using 'rawName'
+      # Define a property using 'rawName', equivalent to
+      #
+      # ```
+      #     property raw_name.underscore, as: raw_name
+      # ```
       def property(raw_name, options = {}, &block)
         name = options.delete(:name) || raw_name.to_s.underscore
         properties[raw_name] = OpenStruct.new name: name,
                                               as: raw_name,
                                               options: options
-        properties[raw_name][block] = block if block_given?
+        if block_given?
+          properties[raw_name].options[:class] = OpenStruct unless properties[raw_name].options.key?(:class)
+          properties[raw_name][:block] = block
+        end
         attr_accessor name
       end
 
@@ -42,7 +49,7 @@ module Expedia
                                               as: raw_name,
                                               options: options,
                                               class: clazz
-        collections[raw_name][block] = block if block_given?
+        collections[raw_name][:block] = block if block_given?
         attr_accessor name
       end
 
@@ -62,20 +69,44 @@ module Expedia
         properties.map(&:as)
       end
 
-      protected
+      private
+
+      # The ff. methods are private, to avoid explicit calling. This is why we have to
+      # send(:method_name) throughout
 
       def dynamically_create_representer
+        puts "#{self}#dynamically_create_representer"
         this = self
         representer_class = Class.new(Representable::Decorator) do
           include Representable::JSON
           include Representable::Hash
           include Representable::Hash::AllowSymbols
-          this.properties.each do |raw_name, prop|
-            options = prop.options.merge as: raw_name
-            property prop.name, options
-          end
+          this.send(:define_properties_block, this, self)
         end
         this.const_set(:Representer, representer_class)
+      end
+
+      def define_properties_block(resource, representer)
+        puts "define_properties_block(#{resource}, #{representer})"
+        resource.properties.each do |raw_name, prop|
+          options = prop.options.merge as: raw_name
+          puts "options[:class] => #{options[:class]}"
+          if options.key?(:class)
+            clazz = options[:class]
+            if clazz < Expedia::Resource
+              puts "#{representer}.property #{prop.name}, #{options} do"
+              representer.property prop.name, options do
+                clazz.send(:define_properties_block, clazz, self)
+              end
+            elsif prop.block
+              puts "#{representer}.property #{prop.name}, #{options}, &#{prop.block}"
+              representer.property prop.name, options, &prop.block
+            end
+          else
+            puts "#{representer}.property #{prop.name}, #{options}"
+            representer.property prop.name, options
+          end
+        end
       end
     end
 
@@ -85,8 +116,9 @@ module Expedia
         representer_class = if resource_class.constants.include?(:Representer)
                               resource_class.const_get(:Representer)
                             else
-                              resource_class.dynamically_create_representer
+                              resource_class.send(:dynamically_create_representer)
                             end
+        puts "representer_class => #{representer_class}"
         representer_class.new(resource_class.new).from_hash(hash)
       end
     end
