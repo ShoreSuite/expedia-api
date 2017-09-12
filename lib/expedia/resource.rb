@@ -24,7 +24,7 @@ module Expedia
           f = args.first
           f.each { |attr| property attr.to_sym } if f.is_a?(Array)
         end
-        properties.keys + collections.keys
+        declarations.keys
       end
 
       # Define a property using 'attr_name', equivalent to
@@ -33,26 +33,23 @@ module Expedia
       #     property :attr_name, as: 'attrName'
       # ```
       def property(name, options = {}, &block)
-        prop = Declaration.new(name, options, :property)
-        prop.instance_eval(&block) if block_given?
-        properties[name] = prop
-        attr_accessor name
+        add_declaration(name, options, :property, block)
       end
 
       # Define a collection using 'rawName', defaults to `OpenStruct`
       def collection(name, options = {}, &block)
-        coll = Declaration.new(name, options, :collection)
-        coll.instance_eval(&block) if block_given?
-        collections[name] = coll
+        add_declaration(name, options, :collection, block)
+      end
+
+      def add_declaration(name, options, method, block)
+        decl = Declaration.new(name, options, method)
+        decl.instance_eval(&block) if block
+        declarations[name] = decl
         attr_accessor name
       end
 
-      def properties
-        @properties ||= {}
-      end
-
-      def collections
-        @collections ||= {}
+      def declarations
+        @declarations ||= {}
       end
 
       private
@@ -61,7 +58,6 @@ module Expedia
       # send(:method_name) throughout
 
       def dynamically_create_representer
-        puts "#{self}#dynamically_create_representer"
         # `this` here is the Resource class
         this = self
         representer_class = Class.new(Representable::Decorator) do
@@ -75,26 +71,11 @@ module Expedia
       end
 
       def dynamically_declare_mappings(resource, representer)
-        puts "dynamically_declare_mappings(#{resource}, #{representer})"
-        map_simple_properties(resource, representer)
-        map_collections(resource, representer)
-      end
-
-      def map_simple_properties(resource, representer)
-        puts "map_simple_properties(#{resource}, #{representer})"
-        resource.properties.each do |_name, prop|
-          puts "prop => #{prop.inspect}"
-          prop.declare_mappings(resource, representer)
+        resource.declarations.each do |_name, decl|
+          decl.declare_mappings(resource, representer)
         end
       end
 
-      def map_collections(resource, representer)
-        puts "map_collections(#{resource}, #{representer})"
-        resource.collections.each do |_name, coll|
-          puts "coll => #{coll.inspect}"
-          coll.declare_mappings(resource, representer)
-        end
-      end
     end
 
     class << self
@@ -104,7 +85,6 @@ module Expedia
                             else
                               send(:dynamically_create_representer)
                             end
-        puts "representer_class => #{representer_class}"
         representer_class.new(new).from_hash(hash)
       end
     end
