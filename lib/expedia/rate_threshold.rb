@@ -6,6 +6,6 @@ require 'representable'
 module Expedia
   # A Product
   class RateThreshold < Resource
-    attributes %i[type minAmount maxAmount source]
+    attributes %w[type minAmount maxAmount source].map(&:underscore)
   end
 end

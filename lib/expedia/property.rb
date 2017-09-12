@@ -6,17 +6,17 @@ require 'expedia/resource'
 module Expedia
   # A Product
   class Property < Resource
-    attributes %i[resourceId name partnerCode status currency distributionModels
+    attributes %w[resourceId name partnerCode status currency distributionModels
                   rateAcquisitionType taxInclusive pricingModel baseAllocationEnabled
-                  minLOSThreshold cancellationTime timezone]
+                  minLOSThreshold cancellationTime timezone].map(&:underscore)
 
     # An Address
     class Address < Resource
-      attributes %i[line1 line2 city state postalCode countryCode]
+      attributes %w[line1 line2 city state postalCode countryCode].map(&:underscore)
     end
 
     property :address, class: Address
-    property :reservationCutOff, class: OpenStruct do
+    property :reservation_cut_off do
       property :time
       property :day
     end

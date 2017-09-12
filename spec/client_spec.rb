@@ -33,6 +33,7 @@ RSpec.describe Expedia::API::Client, :vcr do
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
       property = client.fetch_property(16636843)
+      puts property
       expect(property).to be_a Expedia::Property
       expect(property.resource_id).to eq(16636843)
       # rubocop:enable Style/NumericLiterals
@@ -106,6 +107,8 @@ RSpec.describe Expedia::API::Client, :vcr do
 
   describe 'fetch_rate_threshold' do
     it 'should fetch the room rate threshold' do
+      expected_attributes = %w[type minAmount maxAmount source].map(&:underscore).map(&:to_sym)
+      expect(Expedia::RateThreshold.attributes).to eq(expected_attributes)
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
       rate_threshold = client.fetch_rate_threshold(16636843, 201788359)
