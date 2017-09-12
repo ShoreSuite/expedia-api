@@ -6,7 +6,7 @@ require 'expedia/resource'
 module Expedia
   # A Product
   class Property < Resource
-    attributes %i[resourceId name partnerCode status currency address distributionModels
+    attributes %i[resourceId name partnerCode status currency distributionModels
                   rateAcquisitionType taxInclusive pricingModel baseAllocationEnabled
                   minLOSThreshold cancellationTime timezone reservationCutOff]
 
@@ -14,6 +14,8 @@ module Expedia
     class Address < Resource
       attributes %i[line1 line2 city state postalCode countryCode]
     end
+
+    property :address, class: Address
 
     # For JSON & XML representation
     class Representer < Representable::Decorator

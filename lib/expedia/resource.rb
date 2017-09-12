@@ -25,18 +25,33 @@ module Expedia
       end
 
       # Define a property using 'rawName'
-      def property(raw_name, options = {})
-        as = options.delete(:as) || raw_name.to_s.underscore
-        properties[raw_name] = {
-          name: raw_name,
-          as: as,
-          options: options
-        }
-        attr_accessor as
+      def property(raw_name, options = {}, &block)
+        name = options.delete(:name) || raw_name.to_s.underscore
+        properties[raw_name] = OpenStruct.new name: name,
+                                              as: raw_name,
+                                              options: options
+        properties[raw_name][block] = block if block_given?
+        attr_accessor name
+      end
+
+      # Define a collection using 'rawName', defaults to `OpenStruct`
+      def collection(raw_name, options = {}, &block)
+        name = options.delete(:name) || raw_name.to_s.underscore
+        clazz = options.delete(:class) || OpenStruct
+        collection[raw_name] = OpenStruct.new name: name,
+                                              as: raw_name,
+                                              options: options,
+                                              class: clazz
+        collections[raw_name][block] = block if block_given?
+        attr_accessor name
       end
 
       def properties
         @properties ||= {}
+      end
+
+      def collections
+        @collections ||= {}
       end
 
       def raw_attribute_names
@@ -46,25 +61,32 @@ module Expedia
       def attribute_names
         properties.map(&:as)
       end
+
+      protected
+
+      def dynamically_create_representer
+        this = self
+        representer_class = Class.new(Representable::Decorator) do
+          include Representable::JSON
+          include Representable::Hash
+          include Representable::Hash::AllowSymbols
+          this.properties.each do |raw_name, prop|
+            options = prop.options.merge as: raw_name
+            property prop.name, options
+          end
+        end
+        this.const_set(:Representer, representer_class)
+      end
     end
 
     class << self
       def from_hash(hash)
         resource_class = self
-        if resource_class.constants.include?(:Representer)
-          representer_class = resource_class.const_get(:Representer)
-        else
-          # Dynamic metaprogramming magic follows
-          representer_class = Class.new(Representable::Decorator) do
-            include Representable::JSON
-            include Representable::Hash
-            include Representable::Hash::AllowSymbols
-            resource_class.raw_attribute_names.each do |attr|
-              property attr.underscore, as: attr
-            end
-          end
-          resource_class.const_set(:Representer, representer_class)
-        end
+        representer_class = if resource_class.constants.include?(:Representer)
+                              resource_class.const_get(:Representer)
+                            else
+                              resource_class.dynamically_create_representer
+                            end
         representer_class.new(resource_class.new).from_hash(hash)
       end
     end
