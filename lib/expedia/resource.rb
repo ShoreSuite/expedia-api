@@ -75,7 +75,6 @@ module Expedia
           decl.declare_mappings(resource, representer)
         end
       end
-
     end
 
     class << self
