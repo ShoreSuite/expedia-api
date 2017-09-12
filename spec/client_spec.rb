@@ -22,9 +22,15 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(property.address.line1).to eq('1234 Test Street')
       expect(property.address.city).to eq('Région Test')
       expect(property.address.country_code).to eq('USA')
-      expect(property.distribution_models).to be_a Array
-      expect(property.distribution_models.count).to eq(2)
+      expect(property.distribution_models).to eq(%w[ExpediaCollect HotelCollect])
+      expect(property.rate_acquisition_type).to eq('SellLAR')
+      expect(property.pricing_model).to eq('PerDayPricing')
+      expect(property.base_allocation_enabled).to be false
+      expect(property.min_lost_threshold).to eq(1)
+      expect(property.cancellation_time).to eq('18:00')
+      expect(property.timezone).to eq('(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London')
       expect(property.reservation_cut_off.time).to eq('23:59')
+      expect(property.reservation_cut_off.day).to eq('sameDay')
     end
   end
 
@@ -33,7 +39,6 @@ RSpec.describe Expedia::API::Client, :vcr do
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
       property = client.fetch_property(16636843)
-      puts property
       expect(property).to be_a Expedia::Property
       expect(property.resource_id).to eq(16636843)
       # rubocop:enable Style/NumericLiterals
@@ -42,9 +47,15 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(property.address.line1).to eq('1234 Test Street')
       expect(property.address.city).to eq('Région Test')
       expect(property.address.country_code).to eq('USA')
-      expect(property.distribution_models).to be_a Array
-      expect(property.distribution_models.count).to eq(2)
+      expect(property.distribution_models).to eq(%w[ExpediaCollect HotelCollect])
+      expect(property.rate_acquisition_type).to eq('SellLAR')
+      expect(property.pricing_model).to eq('PerDayPricing')
+      expect(property.base_allocation_enabled).to be false
+      expect(property.min_lost_threshold).to eq(1)
+      expect(property.cancellation_time).to eq('18:00')
+      expect(property.timezone).to eq('(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London')
       expect(property.reservation_cut_off.time).to eq('23:59')
+      expect(property.reservation_cut_off.day).to eq('sameDay')
     end
   end
 

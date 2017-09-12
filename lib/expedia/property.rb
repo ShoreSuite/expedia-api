@@ -8,7 +8,9 @@ module Expedia
   class Property < Resource
     attributes %w[resourceId name partnerCode status currency distributionModels
                   rateAcquisitionType taxInclusive pricingModel baseAllocationEnabled
-                  minLOSThreshold cancellationTime timezone].map(&:underscore)
+                  cancellationTime timezone].map(&:underscore)
+
+    property :min_lost_threshold, as: 'minLOSThreshold'
 
     # An Address
     class Address < Resource
