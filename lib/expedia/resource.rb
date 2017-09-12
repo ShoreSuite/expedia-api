@@ -30,14 +30,16 @@ module Expedia
       #     property raw_name.underscore, as: raw_name
       # ```
       def property(raw_name, options = {}, &block)
+        # rubocop:enable Metrics/AbcSize
         name = options.delete(:name) || raw_name.to_s.underscore
-        properties[raw_name] = OpenStruct.new name: name,
-                                              as: raw_name,
-                                              options: options
+        prop = OpenStruct.new name: name,
+                              as: raw_name,
+                              options: options
         if block_given?
-          properties[raw_name].options[:class] = OpenStruct unless properties[raw_name].options.key?(:class)
-          properties[raw_name][:block] = block
+          prop.options[:class] = OpenStruct unless properties[raw_name].options.key?(:class)
+          prop.block = block
         end
+        properties[raw_name] = prop
         attr_accessor name
       end
 
@@ -86,7 +88,9 @@ module Expedia
         this.const_set(:Representer, representer_class)
       end
 
+      # rubocop:disable Metrics/AbcSize
       def define_properties_block(resource, representer)
+        # rubocop:enable Metrics/AbcSize
         puts "define_properties_block(#{resource}, #{representer})"
         resource.properties.each do |raw_name, prop|
           options = prop.options.merge as: raw_name
