@@ -171,8 +171,6 @@ module Expedia
         decl = Declaration.new(name, options, method)
         decl.instance_eval(&block) if block
         @poc_declarations[name] = decl
-        declarations[name] = decl
-        attr_accessor name
       end
 
       private :add_declaration
