@@ -160,16 +160,22 @@ module Expedia
       alias properties attributes
 
       def property(name, options = {}, &block)
-        prop = Declaration.new(name, options, :property)
-        prop.instance_eval(&block) if block_given?
-        @poc_declarations[name] = prop
+        add_declaration name, options, :property, block
       end
 
       def collection(name, options = {}, &block)
-        coll = Declaration.new(name, options, :collection)
-        coll.instance_eval(&block) if block_given?
-        @poc_declarations[name] = coll
+        add_declaration name, options, :collection, block
       end
+
+      def add_declaration(name, options, method, block)
+        decl = Declaration.new(name, options, method)
+        decl.instance_eval(&block) if block
+        @poc_declarations[name] = decl
+        declarations[name] = decl
+        attr_accessor name
+      end
+
+      private :add_declaration
 
       def declare_mappings(resource, representer)
         # Add coercion if needed
