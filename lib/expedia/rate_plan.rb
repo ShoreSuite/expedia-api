@@ -6,7 +6,7 @@ require 'representable'
 module Expedia
   # A RatePlan
   class RatePlan < Resource
-    attributes %i[resource_id name rate_acquisition_type]
+    properties %i[resource_id name rate_acquisition_type]
 
     collection :distribution_rules do
       properties %i[expedia_id partner_code distribution_model manageable]
@@ -15,69 +15,27 @@ module Expedia
       end
     end
 
-    #     "resourceId": 209102875,
-    #     "name": "RoomOnly",
-    #     "rateAcquisitionType": "SellLAR",
-    #     "distributionRules": [
-    #         {
-    #             "expediaId": "209102875",
-    #             "partnerCode": "RoomOnly",
-    #             "distributionModel": "ExpediaCollect",
-    #             "manageable": false,
-    #             "compensation": {
-    #                 "percent": 0.2,
-    #                 "minAmount": 0
-    #             }
-    #         },
-    #         {
-    #             "expediaId": "209102875A",
-    #             "partnerCode": "RoomOnly",
-    #             "distributionModel": "HotelCollect",
-    #             "manageable": true,
-    #             "compensation": {
-    #                 "percent": 0.2
-    #             }
-    #         }
-    #     ],
-    #     "status": "Active",
-    #     "type": "Standalone",
-    #     "pricingModel": "PerDayPricing",
-    #     "occupantsForBaseRate": 2,
-    #     "taxInclusive": false,
-    #     "depositRequired": false,
-    #     "creationDateTime": "2016-11-24T21:28:13Z",
-    #     "lastUpdateDateTime": "2016-11-24T21:28:13Z",
-    #     "cancelPolicy": {
-    #         "defaultPenalties": [
-    #             {
-    #                 "deadline": 0,
-    #                 "perStayFee": "None",
-    #                 "amount": 0
-    #             }
-    #         ]
-    #     },
-    #     "additionalGuestAmounts": [
-    #         {
-    #             "dateStart": "2016-11-24",
-    #             "dateEnd": "2079-06-06",
-    #             "ageCategory": "Adult",
-    #             "amount": 0
-    #         }
-    #     ],
-    #     "minLOSDefault": 1,
-    #     "maxLOSDefault": 28,
-    #     "minAdvBookDays": 0,
-    #     "maxAdvBookDays": 500,
-    #     "bookDateStart": "1900-01-01",
-    #     "bookDateEnd": "2079-06-06",
-    #     "travelDateStart": "1901-01-01",
-    #     "travelDateEnd": "2079-06-06",
-    #     "mobileOnly": false,
-    #     "_links": {
-    #         "self": {
-    #             "href": "https://services.expediapartnercentral.com/
-    #                      properties/16636843/roomTypes/201788359/ratePlans/209102875"
-    #         }
-    #     }
+    properties %i[status type pricing_model occupants_for_base_rate tax_inclusive deposit_required]
+    property :creation_date_time, type: DateTime
+    property :last_update_date_time, type: DateTime
+
+    property :cancel_policy do
+      collection :default_penalties do
+        properties %i[deadline per_stay_fee amount]
+      end
+    end
+
+    collection :additional_guest_amounts do
+      property :date_start, type: Date
+      property :date_end, type: Date
+      properties :age_category, :amount
+    end
+
+    raw_properties %w[minLOSDefault maxLOSDefault minAdvBookDays maxAdvBookDays]
+    property :book_date_start, as: 'bookDateStart', type: Date
+    property :book_date_end, as: 'bookDateEnd', type: Date
+    property :travel_date_start, as: 'travelDateStart', type: Date
+    property :travel_date_end, as: 'travelDateEnd', type: Date
+    raw_property 'mobileOnly'
   end
 end

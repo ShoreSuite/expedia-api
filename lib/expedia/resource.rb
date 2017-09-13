@@ -2,6 +2,7 @@
 
 require 'active_support/core_ext/string/inflections'
 require 'representable'
+require 'representable/coercion'
 
 module Expedia
   # Base class for all mappable resources
@@ -28,6 +29,22 @@ module Expedia
       end
 
       alias properties attributes
+
+      def raw_attributes(*args)
+        return if args.empty?
+        props = args.first.is_a?(Array) ? args.first : args
+        props.each { |s| raw_property s }
+      end
+      alias raw_properties raw_attributes
+
+      # Define a property using 'rawName', equivalent to
+      #
+      # ```
+      #     property :raw_name, as: 'rawName'
+      # ```
+      def raw_property(raw_name, options = {}, &block)
+        property raw_name.to_s.underscore, options.merge(as: raw_name), &block
+      end
 
       # Define a property using 'attr_name', equivalent to
       #
@@ -134,8 +151,8 @@ module Expedia
 
       def attributes(*args)
         unless args.empty?
-          f = args.first
-          f.each { |attr| property attr.to_sym } if f.is_a?(Array)
+          props = args.first.is_a?(Array) ? args.first : args
+          props.each { |attr| property attr.to_sym }
         end
         @poc_declarations.keys
       end
@@ -155,20 +172,18 @@ module Expedia
       end
 
       def declare_mappings(resource, representer)
+        # Add coercion if needed
+        representer.send(:include, Representable::Coercion) if options[:type]
         do_declare_mappings(resource, representer, method)
       end
 
       # rubocop:disable Metrics/AbcSize
-      # rubocop:disable Metrics/MethodLength
       def do_declare_mappings(resource, representer, method)
-        # rubocop:enable Metrics/MethodLength
         # rubocop:enable Metrics/AbcSize
-        if options.key?(:class)
+        if options.key?(:class) && options[:class] < Expedia::Resource
           clazz = options[:class]
-          if clazz < Expedia::Resource
-            representer.send(method, name, options) do
-              clazz.send(:dynamically_declare_mappings, clazz, self)
-            end
+          representer.send(method, name, options) do
+            clazz.send(:dynamically_declare_mappings, clazz, self)
           end
         else
           declarations = @poc_declarations

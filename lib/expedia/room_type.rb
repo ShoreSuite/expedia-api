@@ -4,7 +4,7 @@ require 'expedia/resource'
 
 # The Expedia 'namespace'
 module Expedia
-  # A Product
+  # A RoomType
   class RoomType < Resource
     attributes :resource_id, :partner_code
 

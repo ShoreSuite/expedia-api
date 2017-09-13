@@ -134,21 +134,56 @@ RSpec.describe Expedia::API::Client, :vcr do
   end
 
   describe 'fetch_rate_plan' do
+    # rubocop:disable Metrics/BlockLength
     it 'should retrieve the rate plan with the given id' do
+      # rubocop:enable Metrics/BlockLength
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
-      room_type = client.fetch_rate_plan(16636843, 201788359, 209102875)
-      expect(room_type).to be_a Expedia::RatePlan
-      expect(room_type.resource_id).to eq(209102875)
+      rate_plan = client.fetch_rate_plan(16636843, 201788359, 209102875)
+      expect(rate_plan).to be_a Expedia::RatePlan
+      expect(rate_plan.resource_id).to eq(209102875)
       # rubocop:enable Style/NumericLiterals
-      expect(room_type.distribution_rules).to be_a Array
-      expect(room_type.distribution_rules.count).to eq(2)
-      expect(room_type.distribution_rules.first.expedia_id).to eq('209102875')
-      expect(room_type.distribution_rules.first.partner_code).to eq('RoomOnly')
-      expect(room_type.distribution_rules.first.distribution_model).to eq('ExpediaCollect')
-      expect(room_type.distribution_rules.first.manageable).to be false
-      expect(room_type.distribution_rules.first.compensation.percent).to eq(0.2)
-      expect(room_type.distribution_rules.first.compensation.min_amount).to eq(0)
+      expect(rate_plan.distribution_rules).to be_a Array
+      expect(rate_plan.distribution_rules.count).to eq(2)
+      first_distribution_rule = rate_plan.distribution_rules.first
+      expect(first_distribution_rule.expedia_id).to eq('209102875')
+      expect(first_distribution_rule.partner_code).to eq('RoomOnly')
+      expect(first_distribution_rule.distribution_model).to eq('ExpediaCollect')
+      expect(first_distribution_rule.manageable).to be false
+      expect(first_distribution_rule.compensation.percent).to eq(0.2)
+      expect(first_distribution_rule.compensation.min_amount).to eq(0)
+      expect(rate_plan.status).to eq('Active')
+      expect(rate_plan.type).to eq('Standalone')
+      expect(rate_plan.pricing_model).to eq('PerDayPricing')
+      expect(rate_plan.occupants_for_base_rate).to eq(2)
+      expect(rate_plan.tax_inclusive).to be false
+      expect(rate_plan.deposit_required).to be false
+      expect(rate_plan.creation_date_time).to be_a DateTime
+      expect(rate_plan.creation_date_time).to eq(DateTime.parse('2016-11-24T21:28:13Z'))
+      expect(rate_plan.last_update_date_time).to be_a DateTime
+      expect(rate_plan.last_update_date_time).to eq(DateTime.parse('2016-11-24T21:28:13Z'))
+      expect(rate_plan.cancel_policy.default_penalties).to be_a Array
+      expect(rate_plan.cancel_policy.default_penalties.count).to eq(1)
+      expect(rate_plan.cancel_policy.default_penalties.first.deadline).to eq(0)
+      expect(rate_plan.cancel_policy.default_penalties.first.per_stay_fee).to eq('None')
+      expect(rate_plan.cancel_policy.default_penalties.first.amount).to eq(0)
+      expect(rate_plan.additional_guest_amounts).to be_a Array
+      expect(rate_plan.additional_guest_amounts.count).to eq(1)
+      expect(rate_plan.additional_guest_amounts.first.date_start).to be_a Date
+      expect(rate_plan.additional_guest_amounts.first.date_start).to eq(Date.new(2016, 11, 24))
+      expect(rate_plan.additional_guest_amounts.first.date_end).to be_a Date
+      expect(rate_plan.additional_guest_amounts.first.date_end).to eq(Date.new(2079, 6, 6))
+      expect(rate_plan.additional_guest_amounts.first.age_category).to eq('Adult')
+      expect(rate_plan.additional_guest_amounts.first.amount).to eq(0)
+      expect(rate_plan.min_los_default).to eq(1)
+      expect(rate_plan.max_los_default).to eq(28)
+      expect(rate_plan.min_adv_book_days).to eq(0)
+      expect(rate_plan.max_adv_book_days).to eq(500)
+      expect(rate_plan.book_date_start).to eq(Date.new(1900, 1, 1))
+      expect(rate_plan.book_date_end).to eq(Date.new(2079, 6, 6))
+      expect(rate_plan.travel_date_start).to eq(Date.new(1901, 1, 1))
+      expect(rate_plan.travel_date_end).to eq(Date.new(2079, 6, 6))
+      expect(rate_plan.mobile_only).to be false
     end
   end
 end

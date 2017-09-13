@@ -11,6 +11,7 @@ gem 'faraday', '~> 0.9.2'
 gem 'json', '~> 2.1.0'
 gem 'money', '~> 6.9.0'
 gem 'representable', '~> 3.0.4'
+gem 'virtus', '~> 1.0.5'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

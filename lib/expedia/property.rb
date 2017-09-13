@@ -4,7 +4,7 @@ require 'expedia/resource'
 
 # The Expedia 'namespace'
 module Expedia
-  # A Product
+  # A Property
   class Property < Resource
     attributes %w[resourceId name partnerCode status currency distributionModels
                   rateAcquisitionType taxInclusive pricingModel baseAllocationEnabled
