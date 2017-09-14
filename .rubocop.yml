@@ -3,6 +3,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - expedia.gemspec
+    - vendor
 Metrics/AbcSize:
   Max: 16
 Metrics/LineLength:
