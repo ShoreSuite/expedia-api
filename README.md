@@ -1,6 +1,8 @@
 Expedia API Gem
 ===
 
+![Build status](https://travis-ci.org/ShoreSuite/expedia-api.svg?branch=develop)
+
 A relatively 'thin' (for now) client for the Expedia Quick Connect (EQC) API: [https://expediaconnectivity.com/developer](https://expediaconnectivity.com/developer)
 
 Uses [`representable`](http://trailblazer.to/gems/representable/) for JSON mapping and [`vcr`](https://github.com/vcr/vcr) to record/replay API interactions
