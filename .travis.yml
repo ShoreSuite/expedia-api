@@ -3,5 +3,5 @@ rvm:
   - 2.4.1
 
 script:
-  - rubocop
-  - rspec
+  - bundle exec rubocop
+  - bundle exec rspec
