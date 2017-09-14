@@ -10,6 +10,8 @@ gem 'activesupport', '~> 5.0'
 gem 'faraday', '~> 0.9.2'
 gem 'json', '~> 2.1.0'
 gem 'money', '~> 6.9.0'
+gem 'representable', '~> 3.0.4'
+gem 'virtus', '~> 1.0.5'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
@@ -33,7 +35,6 @@ group :development do
   gem 'jsonpath', '~> 0.5.8', require: false
 
   # WebMock and VCR to record HTTP interactions with other services
-  gem 'httpclient', '~> 2.8.0', require: false
   gem 'vcr', '~> 3.0.3', require: false
-  gem 'webmock', '~> 2.0.3', require: false
+  gem 'webmock', '~> 3.0.1', require: false
 end

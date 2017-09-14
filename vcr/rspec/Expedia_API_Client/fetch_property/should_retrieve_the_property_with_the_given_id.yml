@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.expediapartnercentral.com/products/properties/16636843
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic RVFDMTY2MzY4NDNob3RlbDpCdG02bm9FISZaQz1US2FV
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Sep 2017 09:25:18 GMT
+      Content-Type:
+      - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
+      Content-Length:
+      - '580'
+      Connection:
+      - keep-alive
+      Transaction-Id:
+      - 375ab4b3-7044-40a1-8e60-dd11fa366a4a
+      Vary:
+      - Accept-Encoding, User-Agent
+      X-Application-Context:
+      - EPS-Product:prod:8443
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJlbnRpdHkiOnsicmVzb3VyY2VJZCI6MTY2MzY4NDMsIm5hbWUiOiJFUUMgSG90ZWwgMzIxIiwicGFydG5lckNvZGUiOiIxNjYzNjg0MyIsInN0YXR1cyI6IkFjdGl2ZSIsImN1cnJlbmN5IjoiVVNEIiwiYWRkcmVzcyI6eyJsaW5lMSI6IjEyMzQgVGVzdCBTdHJlZXQiLCJsaW5lMiI6IiIsImNpdHkiOiJSw6lnaW9uIFRlc3QiLCJzdGF0ZSI6IiIsInBvc3RhbENvZGUiOiIiLCJjb3VudHJ5Q29kZSI6IlVTQSJ9LCJkaXN0cmlidXRpb25Nb2RlbHMiOlsiRXhwZWRpYUNvbGxlY3QiLCJIb3RlbENvbGxlY3QiXSwicmF0ZUFjcXVpc2l0aW9uVHlwZSI6IlNlbGxMQVIiLCJ0YXhJbmNsdXNpdmUiOmZhbHNlLCJwcmljaW5nTW9kZWwiOiJQZXJEYXlQcmljaW5nIiwiYmFzZUFsbG9jYXRpb25FbmFibGVkIjpmYWxzZSwibWluTE9TVGhyZXNob2xkIjoxLCJjYW5jZWxsYXRpb25UaW1lIjoiMTg6MDAiLCJ0aW1lem9uZSI6IihHTVQpIEdyZWVud2ljaCBNZWFuIFRpbWUgOiBEdWJsaW4sIEVkaW5idXJnaCwgTGlzYm9uLCBMb25kb24iLCJyZXNlcnZhdGlvbkN1dE9mZiI6eyJ0aW1lIjoiMjM6NTkiLCJkYXkiOiJzYW1lRGF5In19fQ==
+    http_version: 
+  recorded_at: Wed, 06 Sep 2017 09:25:18 GMT
+recorded_with: VCR 3.0.3
