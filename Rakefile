@@ -17,8 +17,8 @@ Juwelier::Tasks.new do |gem|
   gem.name = 'expedia'
   gem.homepage = 'http://github.com/aisrael/expedia'
   gem.license = 'MIT'
-  gem.summary = 'TODO: one-line summary of your gem'
-  gem.description = 'TODO: longer description of your gem'
+  gem.summary = 'Expedia API'
+  gem.description = 'Expedia Quick Connect API gem'
   gem.email = 'aisrael@gmail.com'
   gem.authors = ['Alistair A. Israel']
 
