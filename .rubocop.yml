@@ -1,6 +1,8 @@
 AllCops:
   TargetRubyVersion: 2.3
   DisplayCopNames: true
+  Exclude:
+    - expedia.gemspec
 Metrics/AbcSize:
   Max: 16
 Metrics/LineLength:
