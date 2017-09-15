@@ -47,10 +47,7 @@ module Expedia
           END
         end
         doc = Nokogiri::XML(resp.body)
-        product_list = doc.css('ProductAvailRateRetrievalRS ProductList')
-        puts "product_list.count => #{product_list.count}"
-        puts "product_list.children.count => #{product_list.children.count}"
-        ProductList.from_node(product_list.at('ProductList'))
+        ProductList.from_node(doc.at('ProductList'))
       end
     end
   end
