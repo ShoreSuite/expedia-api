@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/concern'
+require 'xml_mapper'
 require 'nokogiri'
 require 'expedia/resource'
 
@@ -9,49 +10,27 @@ module Expedia
     # The Product, Availability and Rate Retrieval Request and Response API
     # https://expediaconnectivity.com/apis/product-management/expedia-quickconnect-products-availability-and-rates-retrieval-api/quick-start.html
     module Parr
-      # An XmlResource mixin
-      module XmlResource
-        extend ActiveSupport::Concern
-        class_methods do
-          def attributes
-            @attributes ||= []
-          end
+      # A RoomType
+      class RoomType
+        include XmlMapper::XmlResource
 
-          def attribute(name, options = {})
-            attributes << AttributeDefinition.new(name, options)
-            attr_accessor name
-          end
+        attributes :code, :name, :status
 
-          def from_node(node)
-            new.tap do |obj|
-              attributes.each do |attr|
-                obj.send("#{attr.name}=", node[attr.name])
-              end
-            end
-          end
-        end
-
-        def initialize(*args)
-          puts "#{self.class}.initialize(#{args.inspect})"
-          self.class.attributes.zip(args).each do |attr, v|
-            send("#{attr.name}=", v)
-          end
-        end
-
-        AttributeDefinition = Struct.new(:name, :options) do
+        has_many :rate_plan do
+          attributes :id, :code, :name, :status, :type
+          attribute :distribution_model, as: 'distributionModel'
         end
       end
 
       # A ProductList
-      ProductList = Struct.new :hotel, :room_type
-
-      # A Hotel
-      class Hotel
-        include XmlResource
-
-        attribute :id
-        attribute :name
-        attribute :city
+      class ProductList
+        include XmlMapper::XmlResource
+        element :hotel do
+          attribute :id
+          attribute :name
+          attribute :city
+        end
+        element :room_type, class: RoomType
       end
 
       def fetch_parr
@@ -71,8 +50,7 @@ module Expedia
         product_list = doc.css('ProductAvailRateRetrievalRS ProductList')
         puts "product_list.count => #{product_list.count}"
         puts "product_list.children.count => #{product_list.children.count}"
-        hotel_node = product_list.at('Hotel')
-        Hotel.from_node(hotel_node)
+        ProductList.from_node(product_list.at('ProductList'))
       end
     end
   end
