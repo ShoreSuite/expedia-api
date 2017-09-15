@@ -164,6 +164,7 @@ DEPENDENCIES
   jsonpath (~> 0.5.8)
   juwelier (~> 2.1.0)
   money (~> 6.9.0)
+  nokogiri (~> 1.8.0)
   rainbow (~> 2.2.2)
   representable (~> 3.0.4)
   rspec (~> 3.6.0)

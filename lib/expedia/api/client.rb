@@ -7,6 +7,8 @@ require 'json'
 require 'expedia/property'
 require 'expedia/room_type'
 require 'expedia/rate_threshold'
+require 'expedia/api/product'
+require 'expedia/api/parr'
 
 ENV_VARS = %w[EQC_PROPERTY_ID EQC_USERNAME EQC_PASSWORD].freeze
 
@@ -19,51 +21,8 @@ module Expedia
   module API
     # The main Expedia API client
     class Client
-      def list_properties
-        conn = make_conn
-        resp = conn.get '/products/properties'
-        json = JSON.parse(resp.body).with_indifferent_access
-        json[:entity].map do |entity|
-          Property.from_hash(entity)
-        end
-      end
-
-      def fetch_property(resource_id)
-        conn = make_conn
-        resp = conn.get "/products/properties/#{resource_id}"
-        json = JSON.parse(resp.body).with_indifferent_access
-        Property.from_hash(json[:entity])
-      end
-
-      def list_room_types(property_id)
-        conn = make_conn
-        resp = conn.get "/products/properties/#{property_id}/roomTypes"
-        json = JSON.parse(resp.body).with_indifferent_access
-        json[:entity].map do |entity|
-          RoomType.from_hash(entity)
-        end
-      end
-
-      def fetch_room_type(property_id, room_type_id)
-        conn = make_conn
-        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}"
-        json = JSON.parse(resp.body).with_indifferent_access
-        RoomType.from_hash(json[:entity])
-      end
-
-      def fetch_rate_threshold(property_id, room_type_id)
-        conn = make_conn
-        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/rateThresholds"
-        json = JSON.parse(resp.body).with_indifferent_access
-        RateThreshold.from_hash(json[:entity])
-      end
-
-      def fetch_rate_plan(property_id, room_type_id, rate_plan_id)
-        conn = make_conn
-        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/ratePlans/#{rate_plan_id}"
-        json = JSON.parse(resp.body).with_indifferent_access
-        RatePlan.from_hash(json[:entity])
-      end
+      include Expedia::API::Product
+      include Expedia::API::Parr
 
       private
 
