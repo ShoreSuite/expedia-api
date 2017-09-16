@@ -23,6 +23,18 @@ module Expedia
     class Client
       include Expedia::API::Product
       include Expedia::API::Parr
+      attr_reader :eqc_username, :eqc_password
+
+      # Creates a new `CLIENT`
+      def initialize(*args)
+        if args.count == 2
+          @eqc_username = args[0]
+          @eqc_password = args[1]
+        else
+          @eqc_username = ENV['EQC_USERNAME']
+          @eqc_password = ENV['EQC_PASSWORD']
+        end
+      end
 
       private
 
@@ -33,7 +45,7 @@ module Expedia
             faraday.response :logger # log requests to STDOUT
           end
           faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
-          faraday.basic_auth(EQC_USERNAME, EQC_PASSWORD)
+          faraday.basic_auth(@eqc_username, @eqc_password)
         end
       end
     end
