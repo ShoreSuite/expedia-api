@@ -10,50 +10,50 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
-  s.authors = ["Alistair A. Israel".freeze]
+  s.authors = ["Alistair A. Israel".freeze, "Julio Telan".freeze]
   s.date = "2017-09-14"
   s.description = "Expedia Quick Connect API gem".freeze
   s.email = "aisrael@gmail.com".freeze
   s.extra_rdoc_files = [
-    "LICENSE.txt",
-    "README.md"
+      "LICENSE.txt",
+      "README.md"
   ]
   s.files = [
-    ".document",
-    ".gitlab-ci.yml",
-    ".rspec",
-    ".rubocop.yml",
-    ".ruby-gemset",
-    ".ruby-version",
-    ".travis.yml",
-    "Gemfile",
-    "Gemfile.lock",
-    "LICENSE.txt",
-    "README.md",
-    "Rakefile",
-    "VERSION",
-    "features/expedia.feature",
-    "features/step_definitions/expedia_steps.rb",
-    "features/support/env.rb",
-    "lib/expedia.rb",
-    "lib/expedia/api.rb",
-    "lib/expedia/api/client.rb",
-    "lib/expedia/property.rb",
-    "lib/expedia/rate_plan.rb",
-    "lib/expedia/rate_threshold.rb",
-    "lib/expedia/resource.rb",
-    "lib/expedia/room_type.rb",
-    "spec/client_spec.rb",
-    "spec/property_spec.rb",
-    "spec/room_type_spec.rb",
-    "spec/spec_helper.rb",
-    "test.rb",
-    "vcr/rspec/Expedia_API_Client/fetch_property/should_retrieve_the_property_with_the_given_id.yml",
-    "vcr/rspec/Expedia_API_Client/fetch_rate_plan/should_retrieve_the_rate_plan_with_the_given_id.yml",
-    "vcr/rspec/Expedia_API_Client/fetch_rate_threshold/should_fetch_the_room_rate_threshold.yml",
-    "vcr/rspec/Expedia_API_Client/fetch_room_type/should_retrieve_the_room_type_with_the_given_id.yml",
-    "vcr/rspec/Expedia_API_Client/list_properties/should_retrieve_the_properties.yml",
-    "vcr/rspec/Expedia_API_Client/list_room_types/should_retrieve_the_room_types_for_the_given_property_id.yml"
+      ".document",
+      ".gitlab-ci.yml",
+      ".rspec",
+      ".rubocop.yml",
+      ".ruby-gemset",
+      ".ruby-version",
+      ".travis.yml",
+      "Gemfile",
+      "Gemfile.lock",
+      "LICENSE.txt",
+      "README.md",
+      "Rakefile",
+      "VERSION",
+      "features/expedia.feature",
+      "features/step_definitions/expedia_steps.rb",
+      "features/support/env.rb",
+      "lib/expedia.rb",
+      "lib/expedia/api.rb",
+      "lib/expedia/api/client.rb",
+      "lib/expedia/property.rb",
+      "lib/expedia/rate_plan.rb",
+      "lib/expedia/rate_threshold.rb",
+      "lib/expedia/resource.rb",
+      "lib/expedia/room_type.rb",
+      "spec/client_spec.rb",
+      "spec/property_spec.rb",
+      "spec/room_type_spec.rb",
+      "spec/spec_helper.rb",
+      "test.rb",
+      "vcr/rspec/Expedia_API_Client/fetch_property/should_retrieve_the_property_with_the_given_id.yml",
+      "vcr/rspec/Expedia_API_Client/fetch_rate_plan/should_retrieve_the_rate_plan_with_the_given_id.yml",
+      "vcr/rspec/Expedia_API_Client/fetch_rate_threshold/should_fetch_the_room_rate_threshold.yml",
+      "vcr/rspec/Expedia_API_Client/fetch_room_type/should_retrieve_the_room_type_with_the_given_id.yml",
+      "vcr/rspec/Expedia_API_Client/list_properties/should_retrieve_the_properties.yml",
+      "vcr/rspec/Expedia_API_Client/list_room_types/should_retrieve_the_room_types_for_the_given_property_id.yml"
   ]
   s.homepage = "http://github.com/aisrael/expedia".freeze
   s.licenses = ["MIT".freeze]
