@@ -38,7 +38,7 @@ module Expedia
         resp = conn.post '/eqc/parr' do |req|
           req.body = <<~END
             <ProductAvailRateRetrievalRQ xmlns="http://www.expediaconnect.com/EQC/PAR/2013/07">
-                <Authentication username="EQC16636843hotel" password="Btm6noE!&amp;ZC=TKaU"/>
+                <Authentication username="#{Expedia::EQC_USERNAME}" password="#{Expedia::EQC_PASSWORD}"/>
                 <Hotel id="16636843"/>
                 <ParamSet>
                     <ProductRetrieval/>
