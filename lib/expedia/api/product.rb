@@ -13,9 +13,9 @@ module Expedia
         end
       end
 
-      def fetch_property(resource_id)
+      def fetch_property(property_id)
         conn = make_conn
-        resp = conn.get "/products/properties/#{resource_id}"
+        resp = conn.get "/products/properties/#{property_id}"
         json = JSON.parse(resp.body).with_indifferent_access
         Property.from_hash(json[:entity])
       end

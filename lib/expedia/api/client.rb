@@ -10,19 +10,31 @@ require 'expedia/rate_threshold'
 require 'expedia/api/product'
 require 'expedia/api/parr'
 
-ENV_VARS = %w[EQC_PROPERTY_ID EQC_USERNAME EQC_PASSWORD].freeze
-
 # The Expedia 'namespace'
 module Expedia
-  ENV_VARS.each do |key|
-    const_set key, ENV[key]
-  end
+  ENV_VARS = %w[EQC_PROPERTY_ID EQC_USERNAME EQC_PASSWORD EQC_DEBUG_LOG].freeze
+
   # Expedia::API
   module API
     # The main Expedia API client
     class Client
       include Expedia::API::Product
       include Expedia::API::Parr
+
+      attr_reader :username, :password
+
+      # Initialize an Expedia::API::Client by passing in a hash:
+      #
+      # ```
+      #   client = Expedia::API::Client.new username: 'expedia', password: 'secret'
+      # ```
+      #
+      # Otherwise, the client will attempt to default to any credentials found in
+      # the environment variables `EQC_USERNAME` and `EQC_PASSWORD`
+      def initialize(options = {})
+        @username = options[:username] || ENV['EQC_USERNAME']
+        @password = options[:password] || ENV['EQC_PASSWORD']
+      end
 
       private
 
@@ -33,7 +45,7 @@ module Expedia
             faraday.response :logger # log requests to STDOUT
           end
           faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
-          faraday.basic_auth(EQC_USERNAME, EQC_PASSWORD)
+          faraday.basic_auth(username, password)
         end
       end
     end
