@@ -50,7 +50,7 @@ module XmlMapper
     end
 
     def setter_name
-      options[:as] || allow_multiple ? name.to_s.pluralize : name
+      options[:as] || (allow_multiple ? name.to_s.pluralize : name)
     end
 
     # Magic happens here

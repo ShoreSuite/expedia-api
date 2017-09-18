@@ -21,6 +21,14 @@ module Expedia
         has_many :bed_type do
           attributes :id, :name
         end
+        has_many :occupancy_by_age, as: :occupancy_by_age do
+          attributes :age_category
+          attribute :min_age, type: Integer
+          attribute :max_occupants, type: Integer
+        end
+        has_many :rate_threshold do
+          attributes :type, :min_amount, :max_amount, :source
+        end
         has_many :rate_plan do
           attributes :id, :code, :name, :status, :type
           attribute :distribution_model
