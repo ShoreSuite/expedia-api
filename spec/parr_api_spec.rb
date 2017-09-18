@@ -9,7 +9,9 @@ RSpec.describe Expedia::API::Client, :vcr do
     it 'should retrieve the product availability and rates' do
       # rubocop:enable Metrics/BlockLength
       client = Expedia::API::Client.new
-      product_list = client.fetch_parr
+      # rubocop:disable Style/NumericLiterals
+      product_list = client.fetch_parr(16636843)
+      # rubocop:enable Style/NumericLiterals
       expect(product_list).to be_a(Expedia::API::Parr::ProductList)
       expect(product_list.hotel).to be_a(OpenStruct)
       expect(product_list.hotel.id).to eq('16636843')

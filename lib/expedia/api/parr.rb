@@ -33,13 +33,13 @@ module Expedia
         element :room_type, class: RoomType
       end
 
-      def fetch_parr
+      def fetch_parr(property_id)
         conn = make_conn
         resp = conn.post '/eqc/parr' do |req|
           req.body = <<~END
             <ProductAvailRateRetrievalRQ xmlns="http://www.expediaconnect.com/EQC/PAR/2013/07">
                 <Authentication username="#{username}" password="#{password}"/>
-                <Hotel id="16636843"/>
+                <Hotel id="#{property_id}"/>
                 <ParamSet>
                     <ProductRetrieval/>
                 </ParamSet>
