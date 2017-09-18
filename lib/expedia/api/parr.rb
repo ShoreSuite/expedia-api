@@ -30,8 +30,17 @@ module Expedia
           attributes :type, :min_amount, :max_amount, :source
         end
         has_many :rate_plan do
-          attributes :id, :code, :name, :status, :type
-          attribute :distribution_model
+          attributes :id, :code, :name, :status, :type, :distribution_model
+          attributes :rate_acquisition_type, :pricing_model
+          attribute :occupants_for_base_rate, type: Integer
+          attribute :deposit_required, type: :boolean
+          attribute :min_los_default, as: 'minLOSDefault', type: Integer
+          attribute :max_los_default, as: 'maxLOSDefault', type: Integer
+          attribute :min_adv_book_days, type: Integer
+          attribute :max_adv_book_days, type: Integer
+          attribute :mobile_only, type: :boolean
+          attribute :create_date_time, type: DateTime
+          attribute :update_date_time, type: DateTime
         end
       end
 

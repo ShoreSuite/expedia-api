@@ -104,5 +104,59 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(room_type.rate_plans.all? { |rp| rp.status == 'Active' }).to be true
       expect(room_type.rate_plans.all? { |rp| rp.type == 'Standalone' }).to be true
     end
+
+    it 'supports the option return_rate_plan_attributes: true' do
+      client = Expedia::API::Client.new
+      product_list = client.fetch_parr(16636843, return_rate_plan_attributes: true)
+      expect(product_list).to be_a(Expedia::API::Parr::ProductList)
+      expect(product_list.hotel).to be_a(OpenStruct)
+      expect(product_list.hotel.id).to eq(16636843)
+      expect(product_list.hotel.name).to eq('EQC Hotel 321')
+      expect(product_list.hotel.city).to eq('Région Test')
+
+      room_type = product_list.room_type
+      expect(room_type).to be_a(Expedia::API::Parr::RoomType)
+      expect(product_list.room_type.id).to eq(201788359)
+      expect(product_list.room_type.code).to eq('RoomCode')
+      expect(product_list.room_type.name).to eq('Standard Room')
+      expect(product_list.room_type.status).to eq('Active')
+
+      expect(product_list.room_type.rate_plans).to be_an_array_of_size(4)
+      expect(product_list.room_type.rate_plans[0].id).to eq('209102875A')
+      expect(product_list.room_type.rate_plans[0].code).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[0].name).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[0].distribution_model).to eq('HotelCollect')
+      expect(product_list.room_type.rate_plans[0].rate_acquisition_type).to eq('SellRate')
+      expect(product_list.room_type.rate_plans[0].deposit_required).to be false
+      expect(product_list.room_type.rate_plans[1].id).to eq('209102875')
+      expect(product_list.room_type.rate_plans[1].code).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[1].name).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[1].distribution_model).to eq('ExpediaCollect')
+      expect(product_list.room_type.rate_plans[1].rate_acquisition_type).to eq('Derived')
+      expect(product_list.room_type.rate_plans[1].deposit_required).to be_nil
+      expect(product_list.room_type.rate_plans[2].id).to eq('209102974A')
+      expect(product_list.room_type.rate_plans[2].code).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[2].name).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[2].distribution_model).to eq('HotelCollect')
+      expect(product_list.room_type.rate_plans[2].rate_acquisition_type).to eq('SellRate')
+      expect(product_list.room_type.rate_plans[2].deposit_required).to be false
+      expect(product_list.room_type.rate_plans[3].id).to eq('209102974')
+      expect(product_list.room_type.rate_plans[3].code).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[3].name).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[3].distribution_model).to eq('ExpediaCollect')
+      expect(product_list.room_type.rate_plans[3].rate_acquisition_type).to eq('Derived')
+      expect(product_list.room_type.rate_plans[3].deposit_required).to be_nil
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.status == 'Active' }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.type == 'Standalone' }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.pricing_model == 'PerDayPricing' }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.occupants_for_base_rate == 2 }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.min_los_default == 1 }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.max_los_default == 28 }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.min_adv_book_days.zero? }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.max_adv_book_days == 500 }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.create_date_time.is_a?(DateTime) }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.update_date_time.is_a?(DateTime) }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.mobile_only == false }).to be true
+    end
   end
 end
