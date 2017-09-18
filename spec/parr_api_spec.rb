@@ -3,21 +3,64 @@
 require 'expedia/api/client'
 require 'expedia/api/parr'
 
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Style/NumericLiterals
 RSpec.describe Expedia::API::Client, :vcr do
   describe 'fetch_parr' do
-    # rubocop:disable Metrics/BlockLength
     it 'should retrieve the product availability and rates' do
-      # rubocop:enable Metrics/BlockLength
       client = Expedia::API::Client.new
-      # rubocop:disable Style/NumericLiterals
       product_list = client.fetch_parr(16636843)
-      # rubocop:enable Style/NumericLiterals
       expect(product_list).to be_a(Expedia::API::Parr::ProductList)
       expect(product_list.hotel).to be_a(OpenStruct)
-      expect(product_list.hotel.id).to eq('16636843')
+      expect(product_list.hotel.id).to eq(16636843)
       expect(product_list.hotel.name).to eq('EQC Hotel 321')
       expect(product_list.hotel.city).to eq('Région Test')
       expect(product_list.room_type).to be_a(Expedia::API::Parr::RoomType)
+      expect(product_list.room_type.id).to eq(201788359)
+      expect(product_list.room_type.code).to eq('RoomCode')
+      expect(product_list.room_type.name).to eq('Standard Room')
+      expect(product_list.room_type.status).to eq('Active')
+      expect(product_list.room_type.rate_plans).to be_a(Array)
+      expect(product_list.room_type.rate_plans.count).to eq(4)
+      expect(product_list.room_type.rate_plans[0].id).to eq('209102875A')
+      expect(product_list.room_type.rate_plans[0].code).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[0].name).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[0].distribution_model).to eq('HotelCollect')
+      expect(product_list.room_type.rate_plans[1].id).to eq('209102875')
+      expect(product_list.room_type.rate_plans[1].code).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[1].name).to eq('RoomOnly')
+      expect(product_list.room_type.rate_plans[1].distribution_model).to eq('ExpediaCollect')
+      expect(product_list.room_type.rate_plans[2].id).to eq('209102974A')
+      expect(product_list.room_type.rate_plans[2].code).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[2].name).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[2].distribution_model).to eq('HotelCollect')
+      expect(product_list.room_type.rate_plans[3].id).to eq('209102974')
+      expect(product_list.room_type.rate_plans[3].code).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[3].name).to eq('RoomOnly2')
+      expect(product_list.room_type.rate_plans[3].distribution_model).to eq('ExpediaCollect')
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.status == 'Active' }).to be true
+      expect(product_list.room_type.rate_plans.all? { |rp| rp.type == 'Standalone' }).to be true
+    end
+
+    it 'supports :return_room_attributes option' do
+      client = Expedia::API::Client.new
+      product_list = client.fetch_parr(16636843, return_room_attributes: true)
+      expect(product_list).to be_a(Expedia::API::Parr::ProductList)
+      expect(product_list.hotel).to be_a(OpenStruct)
+      expect(product_list.hotel.id).to eq(16636843)
+      expect(product_list.hotel.name).to eq('EQC Hotel 321')
+      expect(product_list.hotel.city).to eq('Région Test')
+      expect(product_list.room_type).to be_a(Expedia::API::Parr::RoomType)
+      expect(product_list.room_type.id).to eq(201788359)
+      expect(product_list.room_type.code).to eq('RoomCode')
+      expect(product_list.room_type.name).to eq('Standard Room')
+      expect(product_list.room_type.status).to eq('Active')
+      expect(product_list.room_type.smoking_pref).to eq('Either')
+      expect(product_list.room_type.max_occupants).to eq(4)
+      expect(product_list.room_type.bed_types).to be_a(Array)
+      expect(product_list.room_type.bed_types.count).to eq(1)
+      expect(product_list.room_type.bed_types[0].id).to eq('1.18')
+      expect(product_list.room_type.bed_types[0].name).to eq('1 twin bed')
       expect(product_list.room_type.rate_plans).to be_a(Array)
       expect(product_list.room_type.rate_plans.count).to eq(4)
       expect(product_list.room_type.rate_plans[0].id).to eq('209102875A')

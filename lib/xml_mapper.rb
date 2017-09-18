@@ -2,61 +2,14 @@
 
 # The XmlMapper 'namespace'
 module XmlMapper
-  # An XmlResource mixin
-  module XmlResource
-    extend ActiveSupport::Concern
-
-    # rubocop:disable Metrics/BlockLength
-    class_methods do
-      # rubocop:enable Metrics/BlockLength
-      def root_element
-        @element ||= ElementDeclaration.new
-      end
-
-      def tag(name)
-        root_element.name = name
-      end
-
-      def attributes(*args)
-        unless args.empty?
-          a = args.first.is_a?(Array) ? args.first : args
-          a.each { |s| attribute s }
-        end
-        root_element.attributes
-      end
-
-      def attribute(name, options = {})
-        root_element.attribute(name, options)
-        attr_accessor name
-      end
-
-      delegate :children, to: :root_element
-      def element(name, options = {}, &block)
-        root_element.element(name, options, &block)
-        attr_accessor name
-      end
-
-      # rubocop:disable Style/PredicateName
-      def has_many(name, options = {}, &block)
-        # rubocop:enable Style/PredicateName
-        child = root_element.has_many(name, options, &block)
-        attr_accessor child.setter_name
-      end
-
-      def from_node(node)
-        new.tap { |obj| obj.from_node(node) }
-      end
+  class << self
+    attr_writer :auto_camelize_element_names
+    def auto_camelize_element_names
+      @auto_camelize_element_names ||= true
     end
-
-    def initialize(*args)
-      self.class.attributes.zip(args).each do |attr, v|
-        send("#{attr.name}=", v)
-      end
-    end
-
-    def from_node(node)
-      self.class.root_element.perform_mapping(self, node)
-      self
+    attr_writer :auto_camelize_attribute_names
+    def auto_camelize_attribute_names
+      @auto_camelize_attribute_names ||= true
     end
   end
 
@@ -96,22 +49,30 @@ module XmlMapper
       element name, options.merge(allow_multiple: true), &block
     end
 
-    # TODO: Simplify this
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/MethodLength
+    def setter_name
+      options[:as] || allow_multiple ? name.to_s.pluralize : name
+    end
+
+    # Magic happens here
     def perform_mapping(obj, node)
-      # rubocop:enable Metrics/MethodLength
-      # rubocop:enable Metrics/AbcSize
-      attributes.each do |attr|
-        xml_attr_name = attr.options[:as] || attr.name
-        obj.send("#{attr.name}=", node[xml_attr_name])
-      end
+      map_attributes(node, obj)
+      map_child_nodes(node, obj)
+      obj
+    end
+
+    def tag_name
+      options[:tag] || if options[:class]
+                         options[:class].to_s.demodulize
+                       else
+                         XmlMapper.auto_camelize_element_names ? name.to_s.camelcase : name.to_s
+                       end
+    end
+
+    private
+
+    def map_child_nodes(node, obj)
       children.each do |child|
-        tag = child.options[:tag] || if child.options[:class]
-                                       child.options[:class].to_s.demodulize
-                                     else
-                                       child.name.to_s.camelcase
-                                     end
+        tag = child.tag_name
         value = if child.allow_multiple
                   child_nodes = node.css(tag)
                   child_nodes.map do |child_node|
@@ -124,14 +85,33 @@ module XmlMapper
                 end
         obj.send("#{child.setter_name}=", value)
       end
-      obj
     end
 
-    def setter_name
-      options[:as] || allow_multiple ? name.to_s.pluralize : name
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/PerceivedComplexity
+    def map_attributes(node, obj)
+      # rubocop:enable Metrics/PerceivedComplexity
+      # rubocop:enable Metrics/AbcSize
+      attributes.each do |attr|
+        xml_attr_name = attr.options[:as] || if XmlMapper.auto_camelize_attribute_names
+                                               attr.name.to_s.camelize(:lower)
+                                             else
+                                               attr.name.to_s
+                                             end
+        xml_attr_val = node[xml_attr_name]
+        next unless xml_attr_val
+        val = if attr.options.key?(:type)
+                if [Integer, :integer, :int].include?(attr.options[:type])
+                  xml_attr_val.to_i
+                else
+                  xml_attr_val
+                end
+              else
+                xml_attr_val
+              end
+        obj.send("#{attr.name}=", val)
+      end
     end
-
-    private
 
     def obj_from_child_node(child, child_node)
       clazz = child.options[:class] || OpenStruct
@@ -145,3 +125,5 @@ module XmlMapper
     end
   end
 end
+
+require 'xml_mapper/xml_resource'
