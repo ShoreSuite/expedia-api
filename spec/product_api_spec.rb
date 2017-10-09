@@ -133,9 +133,7 @@ RSpec.describe Expedia::API::Client, :vcr do
   end
 
   describe 'list_rate_plans' do
-    # rubocop:disable Metrics/BlockLength
     it 'should retrieve all the rate plans for a specific room' do
-      # rubocop:enable Metrics/BlockLength
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
       rate_plan = client.list_rate_plans(16636797, 201788559)
@@ -148,11 +146,9 @@ RSpec.describe Expedia::API::Client, :vcr do
     it 'should retrieve the rate plan with the given id' do
       # rubocop:enable Metrics/BlockLength
       client = Expedia::API::Client.new
-      # rubocop:disable Style/NumericLiterals
       rate_plan = client.fetch_rate_plan(16636843, 201788359, 209102875)
       expect(rate_plan).to be_a Expedia::RatePlan
       expect(rate_plan.resource_id).to eq(209102875)
-      # rubocop:enable Style/NumericLiterals
       expect(rate_plan.distribution_rules).to be_a Array
       expect(rate_plan.distribution_rules.count).to eq(2)
       first_distribution_rule = rate_plan.distribution_rules.first
