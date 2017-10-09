@@ -11,8 +11,10 @@ module Expedia
     # https://expediaconnectivity.com/apis/availability-rates-restrictions-booking-notification-retrieval-and-confirmation/expedia-quickconnect-avail-rates-api/quick-start.html
     module AR
       # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
       def post_ar(property_id, options = {})
         # rubocop:enable Metrics/AbcSize
+        # rubocop:enable Metrics/MethodLength
         conn = make_conn
         resp = conn.post '/eqc/ar' do |req|
           req.headers['Content-Type'] = 'text/xml'
@@ -23,7 +25,7 @@ module Expedia
               AvailRateUpdate do
                 DateRange from: options[:start_date], to: options[:end_date]
                 options[:room_types].each do |room_type|
-                  RoomType id:room_type[:id], closed: room_type[:closed] do
+                  RoomType id: room_type[:id], closed: room_type[:closed] do
                     Inventory totalInventoryAvailable: room_type[:inventory] unless room_type[:inventory]
                   end
                 end

@@ -2,9 +2,6 @@
 
 require 'expedia/api/client'
 require 'expedia/api/ar'
-
-# rubocop:disable Metrics/BlockLength
-# rubocop:disable Style/NumericLiterals
 RSpec.describe Expedia::API::Client, :vcr do
   describe 'post_ar' do
     it 'should update availability' do
