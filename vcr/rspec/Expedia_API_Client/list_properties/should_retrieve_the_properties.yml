@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Basic RVFDMTY2MzY4NDNob3RlbDpCdG02bm9FISZaQz1US2FV
+      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
       User-Agent:
       - Faraday v0.9.2
       Accept-Encoding:
@@ -21,15 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 06 Sep 2017 06:55:23 GMT
+      - Mon, 09 Oct 2017 04:09:21 GMT
       Content-Type:
       - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
       Content-Length:
-      - '582'
+      - '570'
       Connection:
       - keep-alive
       Transaction-Id:
-      - 53c0eb63-db67-4468-8aaa-3f82477a32a9
+      - 58f48a90-a8fc-4b99-96a0-d78c1f48356d
       Vary:
       - Accept-Encoding, User-Agent
       X-Application-Context:
@@ -37,7 +37,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJlbnRpdHkiOlt7InJlc291cmNlSWQiOjE2NjM2ODQzLCJuYW1lIjoiRVFDIEhvdGVsIDMyMSIsInBhcnRuZXJDb2RlIjoiMTY2MzY4NDMiLCJzdGF0dXMiOiJBY3RpdmUiLCJjdXJyZW5jeSI6IlVTRCIsImFkZHJlc3MiOnsibGluZTEiOiIxMjM0IFRlc3QgU3RyZWV0IiwibGluZTIiOiIiLCJjaXR5IjoiUsOpZ2lvbiBUZXN0Iiwic3RhdGUiOiIiLCJwb3N0YWxDb2RlIjoiIiwiY291bnRyeUNvZGUiOiJVU0EifSwiZGlzdHJpYnV0aW9uTW9kZWxzIjpbIkV4cGVkaWFDb2xsZWN0IiwiSG90ZWxDb2xsZWN0Il0sInJhdGVBY3F1aXNpdGlvblR5cGUiOiJTZWxsTEFSIiwidGF4SW5jbHVzaXZlIjpmYWxzZSwicHJpY2luZ01vZGVsIjoiUGVyRGF5UHJpY2luZyIsImJhc2VBbGxvY2F0aW9uRW5hYmxlZCI6ZmFsc2UsIm1pbkxPU1RocmVzaG9sZCI6MSwiY2FuY2VsbGF0aW9uVGltZSI6IjE4OjAwIiwidGltZXpvbmUiOiIoR01UKSBHcmVlbndpY2ggTWVhbiBUaW1lIDogRHVibGluLCBFZGluYnVyZ2gsIExpc2JvbiwgTG9uZG9uIiwicmVzZXJ2YXRpb25DdXRPZmYiOnsidGltZSI6IjIzOjU5IiwiZGF5Ijoic2FtZURheSJ9fV19
+        eyJlbnRpdHkiOlt7InJlc291cmNlSWQiOjE2NjM2Nzk3LCJuYW1lIjoiRVFDIEhvdGVsIDMwNCIsInBhcnRuZXJDb2RlIjoiMTY2MzY3OTciLCJzdGF0dXMiOiJBY3RpdmUiLCJjdXJyZW5jeSI6IlVTRCIsImFkZHJlc3MiOnsibGluZTEiOiIxMjM0IFRlc3QgU3RyZWV0IiwibGluZTIiOiIiLCJjaXR5IjoiUsOpZ2lvbiBUZXN0Iiwic3RhdGUiOiIiLCJwb3N0YWxDb2RlIjoiIiwiY291bnRyeUNvZGUiOiJVU0EifSwiZGlzdHJpYnV0aW9uTW9kZWxzIjpbIkV4cGVkaWFDb2xsZWN0IiwiSG90ZWxDb2xsZWN0Il0sInJhdGVBY3F1aXNpdGlvblR5cGUiOiJTZWxsTEFSIiwidGF4SW5jbHVzaXZlIjpmYWxzZSwicHJpY2luZ01vZGVsIjoiT2NjdXBhbmN5QmFzZWRQcmljaW5nIiwiYmFzZUFsbG9jYXRpb25FbmFibGVkIjpmYWxzZSwiY2FuY2VsbGF0aW9uVGltZSI6IjE4OjAwIiwidGltZXpvbmUiOiIoR01UKSBHcmVlbndpY2ggTWVhbiBUaW1lIDogRHVibGluLCBFZGluYnVyZ2gsIExpc2JvbiwgTG9uZG9uIiwicmVzZXJ2YXRpb25DdXRPZmYiOnsidGltZSI6IjIzOjU5IiwiZGF5Ijoic2FtZURheSJ9fV19
     http_version: 
-  recorded_at: Wed, 06 Sep 2017 06:55:23 GMT
+  recorded_at: Mon, 09 Oct 2017 04:09:21 GMT
 recorded_with: VCR 3.0.3

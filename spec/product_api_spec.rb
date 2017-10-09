@@ -16,18 +16,17 @@ RSpec.describe Expedia::API::Client, :vcr do
       property = properties.first
       expect(property).to be_a Expedia::Property
       # rubocop:disable Style/NumericLiterals
-      expect(property.resource_id).to eq(16636843)
+      expect(property.resource_id).to eq(16636797)
       # rubocop:enable Style/NumericLiterals
-      expect(property.name).to eq('EQC Hotel 321')
-      expect(property.partner_code).to eq('16636843')
+      expect(property.name).to eq('EQC Hotel 304')
+      expect(property.partner_code).to eq('16636797')
       expect(property.address.line1).to eq('1234 Test Street')
       expect(property.address.city).to eq('Région Test')
       expect(property.address.country_code).to eq('USA')
       expect(property.distribution_models).to eq(%w[ExpediaCollect HotelCollect])
       expect(property.rate_acquisition_type).to eq('SellLAR')
-      expect(property.pricing_model).to eq('PerDayPricing')
+      expect(property.pricing_model).to eq('OccupancyBasedPricing')
       expect(property.base_allocation_enabled).to be false
-      expect(property.min_lost_threshold).to eq(1)
       expect(property.cancellation_time).to eq('18:00')
       expect(property.timezone).to eq('(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London')
       expect(property.reservation_cut_off.time).to eq('23:59')
@@ -130,6 +129,17 @@ RSpec.describe Expedia::API::Client, :vcr do
       expect(rate_threshold.min_amount).to eq(10.8184)
       expect(rate_threshold.max_amount).to eq(540.9212)
       expect(rate_threshold.source).to eq('RecentBookings')
+    end
+  end
+
+  describe 'list_rate_plans' do
+    # rubocop:disable Metrics/BlockLength
+    it 'should retrieve all the rate plans for a specific room' do
+      # rubocop:enable Metrics/BlockLength
+      client = Expedia::API::Client.new
+      # rubocop:disable Style/NumericLiterals
+      rate_plan = client.list_rate_plans(16636797, 201788559)
+      expect(rate_plan).to be_a Array
     end
   end
 
