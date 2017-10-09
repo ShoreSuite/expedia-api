@@ -22,5 +22,30 @@ RSpec.describe Expedia::API::Client, :vcr do
       response_status = client.post_ar(property_id, options)
       expect(response_status).to eq(200)
     end
+
+    it 'should update the rate' do
+      client = Expedia::API::Client.new username: 'EQC16636797hotel', password: 'Te$ting123'
+      property_id = client.list_properties.first.resource_id
+      room_types = client.list_room_types(property_id).map do |room_type|
+        rate_plans = [{
+                        id: '209103137',
+                        closed: false,
+                        currency: 'PHP',
+                        rate: 5000
+                      }]
+        {
+          id: room_type.resource_id,
+          closed: false,
+          rate_plans: rate_plans
+        }
+      end
+      options = {
+          start_date: '2017-11-01',
+          end_date: '2017-11-15',
+          room_types: room_types
+      }
+      response_status = client.post_ar(property_id, options)
+      expect(response_status).to eq(200)
+    end
   end
 end

@@ -16,7 +16,9 @@ module Expedia
         # rubocop:enable Metrics/AbcSize
         # rubocop:enable Metrics/MethodLength
         conn = make_conn
+        # rubocop:disable Metrics/BlockLength
         resp = conn.post '/eqc/ar' do |req|
+          # rubocop:enable Metrics/BlockLength
           req.headers['Content-Type'] = 'text/xml'
           builder = Nokogiri::XML::Builder.new do
             AvailRateUpdateRQ xmlns: 'http://www.expediaconnect.com/EQC/AR/2011/06' do
@@ -26,7 +28,19 @@ module Expedia
                 DateRange from: options[:start_date], to: options[:end_date]
                 options[:room_types].each do |room_type|
                   RoomType id: room_type[:id], closed: room_type[:closed] do
-                    Inventory totalInventoryAvailable: room_type[:inventory] unless room_type[:inventory]
+                    Inventory totalInventoryAvailable: room_type[:inventory] if room_type[:inventory]
+                    room_type[:rate_plans]&.each do |rate_plan|
+                      RatePlan id: rate_plan[:id], closed: rate_plan[:closed] do
+                        Rate currency: rate_plan[:currency] do
+                          PerDay rate: rate_plan[:rate]
+                        end
+                        if rate_plan[:restrictions]
+                          restrictions = rate_plan[:restrictions]
+                          Restrictions minLos: restrictions[:minLos], closedToArrival: restrictions[:closedToArrival],
+                                       closedToDeparture: restrictions[:closedToDeparture]
+                        end
+                      end
+                    end
                   end
                 end
               end
