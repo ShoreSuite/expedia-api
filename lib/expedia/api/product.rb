@@ -43,6 +43,15 @@ module Expedia
         RateThreshold.from_hash(json[:entity])
       end
 
+      def list_rate_plans(property_id, room_type_id)
+        conn = make_conn
+        resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/ratePlans"
+        json = JSON.parse(resp.body).with_indifferent_access
+        json[:entity].map do |rate_plan|
+          RatePlan.from_hash(rate_plan)
+        end
+      end
+
       def fetch_rate_plan(property_id, room_type_id, rate_plan_id)
         conn = make_conn
         resp = conn.get "/products/properties/#{property_id}/roomTypes/#{room_type_id}/ratePlans/#{rate_plan_id}"
