@@ -57,7 +57,6 @@ module Expedia
           req.body = builder.to_xml
         end
         doc = Nokogiri::XML(resp.body)
-        puts "DOC => #{doc.to_xml.inspect}"
         if doc.at('Success')
           200
         else
