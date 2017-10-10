@@ -143,3 +143,17 @@ def data_table_to_hashes(s)
     Hash[keys.zip(values)]
   end
 end
+
+# Custom matchers
+RSpec::Matchers.define :be_an_array_of_size do |n|
+  match do |actual|
+    actual.is_a?(Array) && actual.count == n
+  end
+  failure_message do |actual|
+    if actual.is_a?(Array)
+      "expected #{n} elements but got #{actual.count}"
+    else
+      "expected an Array but got a #{actual.class}"
+    end
+  end
+end

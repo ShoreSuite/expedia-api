@@ -10,6 +10,7 @@ gem 'activesupport', '~> 5.0'
 gem 'faraday', '~> 0.9.2'
 gem 'json', '~> 2.1.0'
 gem 'money', '~> 6.9.0'
+gem 'nokogiri', '~> 1.8.0'
 gem 'representable', '~> 3.0.4'
 gem 'virtus', '~> 1.0.5'
 
