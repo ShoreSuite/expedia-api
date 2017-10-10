@@ -9,6 +9,7 @@ require 'expedia/room_type'
 require 'expedia/rate_threshold'
 require 'expedia/api/product'
 require 'expedia/api/parr'
+require 'expedia/api/ar'
 
 # The Expedia 'namespace'
 module Expedia
@@ -20,6 +21,7 @@ module Expedia
     class Client
       include Expedia::API::Product
       include Expedia::API::Parr
+      include Expedia::API::AR
 
       attr_reader :username, :password
 
