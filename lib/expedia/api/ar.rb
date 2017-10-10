@@ -60,6 +60,7 @@ module Expedia
         if doc.at('Success')
           200
         else
+          $stderr.puts doc.to_xml.inspect
           400
         end
       end
