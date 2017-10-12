@@ -136,8 +136,11 @@ RSpec.describe Expedia::API::Client, :vcr do
     it 'should retrieve all the rate plans for a specific room' do
       client = Expedia::API::Client.new
       # rubocop:disable Style/NumericLiterals
-      rate_plan = client.list_rate_plans(16636797, 201788559)
-      expect(rate_plan).to be_a Array
+      rate_plans = client.list_rate_plans(16636797, 201788559)
+      expect(rate_plans).to be_a Array
+      expect(rate_plans.length).to be(2)
+      expect(rate_plans[0]).to be_a Expedia::RatePlan
+      expect(rate_plans[1]).to be_a Expedia::RatePlan
     end
   end
 

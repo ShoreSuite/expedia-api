@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Oct 2017 04:08:18 GMT
+      - Thu, 12 Oct 2017 05:23:28 GMT
       Content-Type:
       - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
       Content-Length:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - keep-alive
       Transaction-Id:
-      - dd43fb81-06b1-43a9-be80-ea59091dc55c
+      - f69c2495-ec8f-4070-aaae-bda63b4f325c
       Vary:
       - Accept-Encoding, User-Agent
       X-Application-Context:
@@ -38,5 +38,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"entity":[{"resourceId":209103137,"name":"RoomOnly","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209103137","partnerCode":"RoomOnly","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.3,"minAmount":0.0}},{"expediaId":"209103137A","partnerCode":"RoomOnly","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.3}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T21:32:06Z","lastUpdateDateTime":"2016-11-24T21:32:06Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1900-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201788559/ratePlans/209103137"}}},{"resourceId":209103159,"name":"RoomOnly3","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209103159","partnerCode":"RoomOnly2","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.3,"minAmount":0.0}},{"expediaId":"209103159A","partnerCode":"RoomOnly2","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.3}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T21:32:21Z","lastUpdateDateTime":"2016-11-24T21:32:21Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1900-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201788559/ratePlans/209103159"}}}]}'
     http_version: 
-  recorded_at: Mon, 09 Oct 2017 04:08:19 GMT
+  recorded_at: Thu, 12 Oct 2017 05:23:29 GMT
 recorded_with: VCR 3.0.3
