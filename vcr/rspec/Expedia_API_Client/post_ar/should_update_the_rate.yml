@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
+      - Basic RVFDMTY2MzY4NDdob3RlbDpUZSR0aW5nMTIz
       User-Agent:
       - Faraday v0.9.2
       Accept-Encoding:
@@ -21,15 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Oct 2017 08:14:47 GMT
+      - Thu, 12 Oct 2017 08:21:41 GMT
       Content-Type:
       - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
       Content-Length:
-      - '570'
+      - '562'
       Connection:
       - keep-alive
       Transaction-Id:
-      - a1f3bfb6-dfbf-4780-ac19-25f3cf49fa51
+      - 4bc0d759-61f2-4cfe-99f4-836a9992afbd
       Vary:
       - Accept-Encoding, User-Agent
       X-Application-Context:
@@ -37,18 +37,18 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJlbnRpdHkiOlt7InJlc291cmNlSWQiOjE2NjM2Nzk3LCJuYW1lIjoiRVFDIEhvdGVsIDMwNCIsInBhcnRuZXJDb2RlIjoiMTY2MzY3OTciLCJzdGF0dXMiOiJBY3RpdmUiLCJjdXJyZW5jeSI6IlVTRCIsImFkZHJlc3MiOnsibGluZTEiOiIxMjM0IFRlc3QgU3RyZWV0IiwibGluZTIiOiIiLCJjaXR5IjoiUsOpZ2lvbiBUZXN0Iiwic3RhdGUiOiIiLCJwb3N0YWxDb2RlIjoiIiwiY291bnRyeUNvZGUiOiJVU0EifSwiZGlzdHJpYnV0aW9uTW9kZWxzIjpbIkV4cGVkaWFDb2xsZWN0IiwiSG90ZWxDb2xsZWN0Il0sInJhdGVBY3F1aXNpdGlvblR5cGUiOiJTZWxsTEFSIiwidGF4SW5jbHVzaXZlIjpmYWxzZSwicHJpY2luZ01vZGVsIjoiT2NjdXBhbmN5QmFzZWRQcmljaW5nIiwiYmFzZUFsbG9jYXRpb25FbmFibGVkIjpmYWxzZSwiY2FuY2VsbGF0aW9uVGltZSI6IjE4OjAwIiwidGltZXpvbmUiOiIoR01UKSBHcmVlbndpY2ggTWVhbiBUaW1lIDogRHVibGluLCBFZGluYnVyZ2gsIExpc2JvbiwgTG9uZG9uIiwicmVzZXJ2YXRpb25DdXRPZmYiOnsidGltZSI6IjIzOjU5IiwiZGF5Ijoic2FtZURheSJ9fV19
+        eyJlbnRpdHkiOlt7InJlc291cmNlSWQiOjE2NjM2ODQ3LCJuYW1lIjoiRVFDIEhvdGVsIDMyMyIsInBhcnRuZXJDb2RlIjoiMTY2MzY4NDciLCJzdGF0dXMiOiJBY3RpdmUiLCJjdXJyZW5jeSI6IlVTRCIsImFkZHJlc3MiOnsibGluZTEiOiIxMjM0IFRlc3QgU3RyZWV0IiwibGluZTIiOiIiLCJjaXR5IjoiUsOpZ2lvbiBUZXN0Iiwic3RhdGUiOiIiLCJwb3N0YWxDb2RlIjoiIiwiY291bnRyeUNvZGUiOiJVU0EifSwiZGlzdHJpYnV0aW9uTW9kZWxzIjpbIkV4cGVkaWFDb2xsZWN0IiwiSG90ZWxDb2xsZWN0Il0sInJhdGVBY3F1aXNpdGlvblR5cGUiOiJTZWxsTEFSIiwidGF4SW5jbHVzaXZlIjpmYWxzZSwicHJpY2luZ01vZGVsIjoiUGVyRGF5UHJpY2luZyIsImJhc2VBbGxvY2F0aW9uRW5hYmxlZCI6ZmFsc2UsImNhbmNlbGxhdGlvblRpbWUiOiIxODowMCIsInRpbWV6b25lIjoiKEdNVCkgR3JlZW53aWNoIE1lYW4gVGltZSA6IER1YmxpbiwgRWRpbmJ1cmdoLCBMaXNib24sIExvbmRvbiIsInJlc2VydmF0aW9uQ3V0T2ZmIjp7InRpbWUiOiIyMzo1OSIsImRheSI6InNhbWVEYXkifX1dfQ==
     http_version: 
-  recorded_at: Mon, 09 Oct 2017 08:14:46 GMT
+  recorded_at: Thu, 12 Oct 2017 08:21:41 GMT
 - request:
     method: get
-    uri: https://services.expediapartnercentral.com/products/properties/16636797/roomTypes
+    uri: https://services.expediapartnercentral.com/products/properties/16636847/roomTypes
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Authorization:
-      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
+      - Basic RVFDMTY2MzY4NDdob3RlbDpUZSR0aW5nMTIz
       User-Agent:
       - Faraday v0.9.2
       Accept-Encoding:
@@ -61,106 +61,34 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Oct 2017 08:14:48 GMT
+      - Thu, 12 Oct 2017 08:21:44 GMT
       Content-Type:
       - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
       Content-Length:
-      - '961'
+      - '593'
       Connection:
       - keep-alive
       Transaction-Id:
-      - 0160fa96-49e8-49c2-9add-8690c61d5c7f
-      Vary:
-      - Accept-Encoding, User-Agent
-      X-Application-Context:
-      - EPS-Product:prod:8443
-    body:
-      encoding: UTF-8
-      string: '{"entity":[{"resourceId":201788559,"partnerCode":"RoomCode2","name":{"value":"Double
-        Room"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"Infant","minAge":0}],"maxOccupancy":{"total":4,"adults":4,"children":1},"standardBedding":[{"option":[{"quantity":1,"type":"Twin
-        Bed","size":"Twin"}]}],"smokingPreferences":["Smoking","Non-Smoking"],"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201788559"}}},{"resourceId":201787718,"partnerCode":"RoomCode","name":{"value":"Standard
-        Room"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"Infant","minAge":0}],"maxOccupancy":{"total":4,"adults":4,"children":1},"standardBedding":[{"option":[{"quantity":1,"type":"Twin
-        Bed","size":"Twin"}]}],"smokingPreferences":["Smoking","Non-Smoking"],"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201787718"}}}]}'
-    http_version: 
-  recorded_at: Mon, 09 Oct 2017 08:14:48 GMT
-- request:
-    method: get
-    uri: https://services.expediapartnercentral.com/products/properties/16636797/roomTypes/201788559/ratePlans
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
-      User-Agent:
-      - Faraday v0.9.2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 09 Oct 2017 08:14:50 GMT
-      Content-Type:
-      - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
-      Content-Length:
-      - '632'
-      Connection:
-      - keep-alive
-      Transaction-Id:
-      - 8f3052ee-cff1-4d7e-8d77-4d5bd85a205f
+      - a6740d5a-bbb4-4d43-ab34-ce0c0c503576
       Vary:
       - Accept-Encoding, User-Agent
       X-Application-Context:
       - EPS-Product:prod:8443
     body:
       encoding: ASCII-8BIT
-      string: '{"entity":[{"resourceId":209103137,"name":"RoomOnly","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209103137","partnerCode":"RoomOnly","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.3,"minAmount":0.0}},{"expediaId":"209103137A","partnerCode":"RoomOnly","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.3}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T21:32:06Z","lastUpdateDateTime":"2016-11-24T21:32:06Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1900-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201788559/ratePlans/209103137"}}},{"resourceId":209103159,"name":"RoomOnly3","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209103159","partnerCode":"RoomOnly2","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.3,"minAmount":0.0}},{"expediaId":"209103159A","partnerCode":"RoomOnly2","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.3}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T21:32:21Z","lastUpdateDateTime":"2016-11-24T21:32:21Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1900-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201788559/ratePlans/209103159"}}}]}'
+      string: '{"entity":[{"resourceId":201966563,"partnerCode":"Double Superior","name":{"attributes":{"typeOfRoom":"Room","roomClass":"Superior"},"value":"Superior
+        Room"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"ChildAgeA","minAge":0}],"maxOccupancy":{"total":2,"adults":2,"children":0},"standardBedding":[{"option":[{"quantity":1,"type":"Twin
+        Bed","size":"Twin"}]}],"smokingPreferences":["Non-Smoking"],"roomSize":{"squareFeet":269,"squareMeters":25},"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636847/roomTypes/201966563"}}},{"resourceId":201788362,"partnerCode":"SingleUse","name":{"value":"Standard
+        Room"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"Infant","minAge":0}],"maxOccupancy":{"total":1,"adults":1,"children":0},"standardBedding":[{"option":[{"quantity":1,"type":"Queen
+        Bed","size":"Queen"}]}],"smokingPreferences":["Smoking","Non-Smoking"],"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636847/roomTypes/201788362"}}},{"resourceId":201965302,"partnerCode":"JuniorSuiteDoble","name":{"attributes":{"typeOfRoom":"Suite","roomClass":"Junior"},"value":"Junior
+        Suite"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"ChildAgeA","minAge":0}],"maxOccupancy":{"total":2,"adults":2,"children":0},"standardBedding":[{"option":[{"quantity":1,"type":"Queen
+        Bed","size":"Queen"}]}],"smokingPreferences":["Non-Smoking"],"roomSize":{"squareFeet":269,"squareMeters":25},"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636847/roomTypes/201965302"}}},{"resourceId":202120928,"partnerCode":"RoomCode","name":{"attributes":{"typeOfRoom":"Single
+        Room","roomClass":"Basic","includeBedType":true},"value":"Basic Single Room,
+        1 Twin Bed"},"status":"Active","ageCategories":[{"category":"Adult","minAge":18},{"category":"ChildAgeA","minAge":0}],"maxOccupancy":{"total":1,"adults":1,"children":0},"standardBedding":[{"option":[{"quantity":1,"type":"Twin
+        Bed","size":"Twin"}]}],"smokingPreferences":["Non-Smoking"],"views":["Beach
+        View"],"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636847/roomTypes/202120928"}}}]}'
     http_version: 
-  recorded_at: Mon, 09 Oct 2017 08:14:50 GMT
-- request:
-    method: get
-    uri: https://services.expediapartnercentral.com/products/properties/16636797/roomTypes/201787718/ratePlans
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
-      User-Agent:
-      - Faraday v0.9.2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 09 Oct 2017 08:14:52 GMT
-      Content-Type:
-      - application/vnd.expedia.eps.product-v2+json;charset=UTF-8
-      Content-Length:
-      - '641'
-      Connection:
-      - keep-alive
-      Transaction-Id:
-      - 52874229-c90a-4f1e-b0d6-51165207aa48
-      Vary:
-      - Accept-Encoding, User-Agent
-      X-Application-Context:
-      - EPS-Product:prod:8443
-    body:
-      encoding: ASCII-8BIT
-      string: '{"entity":[{"resourceId":209102145,"name":"RoomOnly","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209102145","partnerCode":"RoomOnly","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.2,"minAmount":0.0}},{"expediaId":"209102145A","partnerCode":"RoomOnly","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.2}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T20:09:00Z","lastUpdateDateTime":"2016-11-24T20:09:09Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1901-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201787718/ratePlans/209102145"}}},{"resourceId":209102951,"name":"RoomOnly2","rateAcquisitionType":"SellLAR","distributionRules":[{"expediaId":"209102951","partnerCode":"RoomOnly2","distributionModel":"ExpediaCollect","manageable":false,"compensation":{"percent":0.2,"minAmount":0.0}},{"expediaId":"209102951A","partnerCode":"RoomOnly2","distributionModel":"HotelCollect","manageable":true,"compensation":{"percent":0.2}}],"status":"Active","type":"Standalone","pricingModel":"OccupancyBasedPricing","taxInclusive":false,"depositRequired":false,"creationDateTime":"2016-11-24T21:28:52Z","lastUpdateDateTime":"2016-11-24T21:28:52Z","cancelPolicy":{"defaultPenalties":[{"deadline":0,"perStayFee":"None","amount":0.0}]},"additionalGuestAmounts":[{"dateStart":"2016-11-24","dateEnd":"2079-06-06","ageCategory":"Adult","amount":0.0}],"minLOSDefault":1,"maxLOSDefault":28,"minAdvBookDays":0,"maxAdvBookDays":500,"bookDateStart":"1900-01-01","bookDateEnd":"2079-06-06","travelDateStart":"1901-01-01","travelDateEnd":"2079-06-06","mobileOnly":false,"_links":{"self":{"href":"https://services.expediapartnercentral.com/properties/16636797/roomTypes/201787718/ratePlans/209102951"}}}]}'
-    http_version: 
-  recorded_at: Mon, 09 Oct 2017 08:14:52 GMT
+  recorded_at: Thu, 12 Oct 2017 08:21:44 GMT
 - request:
     method: post
     uri: https://services.expediapartnercentral.com/eqc/ar
@@ -169,17 +97,43 @@ http_interactions:
       string: |
         <?xml version="1.0"?>
         <AvailRateUpdateRQ xmlns="http://www.expediaconnect.com/EQC/AR/2011/06">
-          <Authentication username="EQC16636797hotel" password="Te$ting123"/>
-          <Hotel id="16636797"/>
+          <Authentication username="EQC16636847hotel" password="Te$ting123"/>
+          <Hotel id="16636847"/>
           <AvailRateUpdate>
             <DateRange from="2017-11-01" to="2017-11-15"/>
-            <RoomType id="201788559" closed="false"/>
-            <RoomType id="201787718" closed="false"/>
+            <RoomType id="201966563" closed="false">
+              <RatePlan id="209998400A" closed="false">
+                <Rate currency="USD">
+                  <PerDay rate="5000"/>
+                </Rate>
+              </RatePlan>
+            </RoomType>
+            <RoomType id="201788362" closed="false">
+              <RatePlan id="209998400A" closed="false">
+                <Rate currency="USD">
+                  <PerDay rate="5000"/>
+                </Rate>
+              </RatePlan>
+            </RoomType>
+            <RoomType id="201965302" closed="false">
+              <RatePlan id="209998400A" closed="false">
+                <Rate currency="USD">
+                  <PerDay rate="5000"/>
+                </Rate>
+              </RatePlan>
+            </RoomType>
+            <RoomType id="202120928" closed="false">
+              <RatePlan id="209998400A" closed="false">
+                <Rate currency="USD">
+                  <PerDay rate="5000"/>
+                </Rate>
+              </RatePlan>
+            </RoomType>
           </AvailRateUpdate>
         </AvailRateUpdateRQ>
     headers:
       Authorization:
-      - Basic RVFDMTY2MzY3OTdob3RlbDpUZSR0aW5nMTIz
+      - Basic RVFDMTY2MzY4NDdob3RlbDpUZSR0aW5nMTIz
       User-Agent:
       - Faraday v0.9.2
       Content-Type:
@@ -194,16 +148,61 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Oct 2017 08:14:53 GMT
+      - Thu, 12 Oct 2017 08:21:45 GMT
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '145'
+      - '3861'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AvailRateUpdateRS xmlns=\"http://www.expediaconnect.com/EQC/AR/2007/02\">\n\t<Success/>\n</AvailRateUpdateRS>\n"
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AvailRateUpdateRS xmlns=\"http://www.expediaconnect.com/EQC/AR/2007/02\">\n\t<Success>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-01; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-02; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-03; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-04; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-05; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-06; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-07; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-08; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-09; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-10; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-11; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-12; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-13; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-14; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t\t<Warning
+        code=\"7021\">Inventory date 2017-11-15; Room Type ID 201965302; Rate Plan
+        ID 209998400A; Occupancy 1; One or more Sell Rate provided are out of threshold
+        for an identified room type. Ref=[626fee18-af26-11e7-9c18-99fa096cde15] </Warning>\n\t</Success>\n</AvailRateUpdateRS>\n"
     http_version: 
-  recorded_at: Mon, 09 Oct 2017 08:14:53 GMT
+  recorded_at: Thu, 12 Oct 2017 08:21:52 GMT
 recorded_with: VCR 3.0.3

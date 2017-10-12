@@ -24,8 +24,8 @@ module Expedia
         resp = conn.post '/eqc/ar' do |req|
           req.headers['Content-Type'] = 'text/xml'
           builder = Nokogiri::XML::Builder.new do
-            # rubocop:enable Metrics/BlockLength
             AvailRateUpdateRQ xmlns: 'http://www.expediaconnect.com/EQC/AR/2011/06' do
+              # rubocop:enable Metrics/BlockLength
               Authentication username: username, password: password
               Hotel id: property_id
               AvailRateUpdate do
@@ -42,9 +42,12 @@ module Expedia
                         end
                         if rate_plan[:restrictions]
                           restrictions = rate_plan[:restrictions]
-                          Restrictions minLOS: restrictions[:minLOS], closedToArrival: restrictions[:closedToArrival],
-                                       closedToDeparture: restrictions[:closedToDeparture],
-                                       maxLOS: restrictions[:maxLOS]
+                          opt = {}
+                          opt[:minLOS] = restrictions[:minLOS] if restrictions[:minLOS]
+                          opt[:maxLOS] = restrictions[:maxLOS] if restrictions[:maxLOS]
+                          opt[:closedToArrival] = restrictions[:closedToArrival] if restrictions[:closedToArrival]
+                          opt[:closedToDeparture] = restrictions[:closedToDeparture] if restrictions[:closedToDeparture]
+                          Restrictions opt
                         end
                       end
                     end
