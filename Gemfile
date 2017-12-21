@@ -22,7 +22,7 @@ group :development do
   gem 'juwelier', '~> 2.1.0'
   gem 'rainbow', '~> 2.2.2', require: false
   gem 'rubocop', '~> 0.48.1', require: false
-  gem 'yard', '~> 0.9.9', require: false
+  gem 'yard', '~> 0.9.12', require: false
 
   # Code coverage
   gem 'simplecov', '~> 0.14.1', require: false

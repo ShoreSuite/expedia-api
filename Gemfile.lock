@@ -149,7 +149,7 @@ GEM
       hashdiff
     xpath (2.1.0)
       nokogiri (~> 1.3)
-    yard (0.9.9)
+    yard (0.9.12)
 
 PLATFORMS
   ruby
@@ -173,7 +173,7 @@ DEPENDENCIES
   vcr (~> 3.0.3)
   virtus (~> 1.0.5)
   webmock (~> 3.0.1)
-  yard (~> 0.9.9)
+  yard (~> 0.9.12)
 
 BUNDLED WITH
    1.15.4
