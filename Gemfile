@@ -10,7 +10,7 @@ gem 'activesupport', '~> 5.0'
 gem 'faraday', '~> 0.9.2'
 gem 'json', '~> 2.1.0'
 gem 'money', '~> 6.9.0'
-gem 'nokogiri', '~> 1.8.0'
+gem 'nokogiri', '~> 1.8.1'
 gem 'representable', '~> 3.0.4'
 gem 'virtus', '~> 1.0.5'
 
@@ -19,7 +19,7 @@ gem 'virtus', '~> 1.0.5'
 
 group :development do
   gem 'dotenv', '~> 2.2.1'
-  gem 'juwelier', '~> 2.1.0'
+  gem 'juwelier', '~> 2.1.0', require: false
   gem 'rainbow', '~> 2.2.2', require: false
   gem 'rubocop', '~> 0.48.1', require: false
   gem 'yard', '~> 0.9.12', require: false
