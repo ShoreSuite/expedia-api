@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://services.expediapartnercentral.com/eqc/parr
+    body:
+      encoding: UTF-8
+      string: |
+        <ProductAvailRateRetrievalRQ xmlns="http://www.expediaconnect.com/EQC/PAR/2013/07">
+            <Authentication username="EQC16636843hotel" password="Btm6noE!&amp;ZC=TKaU"/>
+            <Hotel id="16636843"/>
+            <ParamSet>
+                <ProductRetrieval/>
+            </ParamSet>
+        </ProductAvailRateRetrievalRQ>
+    headers:
+      Authorization:
+      - Basic RVFDMTY2MzY4NDNob3RlbDpCdG02bm9FISZaQz1US2FV
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Sep 2017 00:50:34 GMT
+      Content-Type:
+      - text/xml;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Transaction-Id:
+      - ea483acc-deac-4c14-a2c6-4bd0ee900766
+      Vary:
+      - Accept-Encoding, User-Agent
+      X-Application-Context:
+      - eps-parr-service:prod,prod-us-west-2:8443
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PFByb2R1Y3RBdmFpbFJhdGVSZXRyaWV2YWxSUyB4bWxucz0iaHR0cDovL3d3dy5leHBlZGlhY29ubmVjdC5jb20vRVFDL1BBUi8yMDEzLzA3Ij48UHJvZHVjdExpc3Q+PEhvdGVsIGlkPSIxNjYzNjg0MyIgbmFtZT0iRVFDIEhvdGVsIDMyMSIgY2l0eT0iUsOpZ2lvbiBUZXN0Ii8+PFJvb21UeXBlIGlkPSIyMDE3ODgzNTkiIGNvZGU9IlJvb21Db2RlIiBuYW1lPSJTdGFuZGFyZCBSb29tIiBzdGF0dXM9IkFjdGl2ZSI+PFJhdGVQbGFuIGlkPSIyMDkxMDI4NzVBIiBjb2RlPSJSb29tT25seSIgbmFtZT0iUm9vbU9ubHkiIHN0YXR1cz0iQWN0aXZlIiB0eXBlPSJTdGFuZGFsb25lIiBkaXN0cmlidXRpb25Nb2RlbD0iSG90ZWxDb2xsZWN0IiByYXRlQWNxdWlzaXRpb25UeXBlPSJTZWxsUmF0ZSIvPjxSYXRlUGxhbiBpZD0iMjA5MTAyODc1IiBjb2RlPSJSb29tT25seSIgbmFtZT0iUm9vbU9ubHkiIHN0YXR1cz0iQWN0aXZlIiB0eXBlPSJTdGFuZGFsb25lIiBkaXN0cmlidXRpb25Nb2RlbD0iRXhwZWRpYUNvbGxlY3QiIHJhdGVBY3F1aXNpdGlvblR5cGU9IkRlcml2ZWQiIHBhcmVudElkPSIyMDkxMDI4NzVBIi8+PFJhdGVQbGFuIGlkPSIyMDkxMDI5NzRBIiBjb2RlPSJSb29tT25seTIiIG5hbWU9IlJvb21Pbmx5MiIgc3RhdHVzPSJBY3RpdmUiIHR5cGU9IlN0YW5kYWxvbmUiIGRpc3RyaWJ1dGlvbk1vZGVsPSJIb3RlbENvbGxlY3QiIHJhdGVBY3F1aXNpdGlvblR5cGU9IlNlbGxSYXRlIi8+PFJhdGVQbGFuIGlkPSIyMDkxMDI5NzQiIGNvZGU9IlJvb21Pbmx5MiIgbmFtZT0iUm9vbU9ubHkyIiBzdGF0dXM9IkFjdGl2ZSIgdHlwZT0iU3RhbmRhbG9uZSIgZGlzdHJpYnV0aW9uTW9kZWw9IkV4cGVkaWFDb2xsZWN0IiByYXRlQWNxdWlzaXRpb25UeXBlPSJEZXJpdmVkIiBwYXJlbnRJZD0iMjA5MTAyOTc0QSIvPjwvUm9vbVR5cGU+PC9Qcm9kdWN0TGlzdD48L1Byb2R1Y3RBdmFpbFJhdGVSZXRyaWV2YWxSUz4=
+    http_version: 
+  recorded_at: Fri, 15 Sep 2017 00:50:34 GMT
+recorded_with: VCR 3.0.3

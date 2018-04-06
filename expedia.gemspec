@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
-  s.authors = ["Alistair A. Israel".freeze]
+  s.authors = ["Alistair A. Israel".freeze, "Julio Telan".freeze]
   s.date = "2017-09-14"
   s.description = "Expedia Quick Connect API gem".freeze
   s.email = "aisrael@gmail.com".freeze
